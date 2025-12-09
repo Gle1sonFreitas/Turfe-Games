@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atividade</title>
+  </head>
+  <body>
+    <h1>Turfe Amigo - Grupo 5</h1>
+    <hr>
+    
+    <div id="tela1" style="display: block;">
+      <h2>Configurando corrida!</h2>
+      <label for="input_quantidadeCavalos">Quantidade de cavalos (2 a 6):</label>
+      <input type="number" id="input_quantidadeCavalos" />
+      <br><br>
+      <label for="input_quantidadeVoltas">Quantidade de voltas:</label>
+      <input type="number" name="" id="input_quantidadeVoltas">
+      <br><br>
+
+      <button onclick="continuar()">Continuar</button>
+    </div>
+
+    <div id="tela2" style="display: none;">
+      <h2>Definindo jogadores!</h2>
+      <label for="input_cadastrarCavalo">Cadastre o Cavalo pelo nome:</label>
+      <input type="text" name="" id="input_cadastrarCavalo">
+      <br><br>
+
+      <div id="nomeCavalos">
+
+      </div>
+
+      <br>
+
+      <button onclick="voltar()">Voltar</button>
+      <button onclick="excluir()">Excluir</button>
+      <button onclick="cadastrar()">Cadastrar</button>
+      <button onclick="iniciar()">Começar</button>
+
+      <br><br>
+
+      <div id="div_mensagem"></div>
+    </div>
+
+    <!-- <button onclick="iniciar()">Iniciar corrida</button> -->
+
+  </body>
+</html>
+<script>
+  var listaCavalos = [];
+  var listaTempRodada = [];
+  var TempoAcumulado = [];
+
+  var quantidadeCavalos = 0
+  var quantidadeVoltas = 0
+
+  function continuar() {
+    quantidadeCavalos = Number(input_quantidadeCavalos.value)
+    quantidadeVoltas = Number(input_quantidadeVoltas.value)
+
+    if (quantidadeCavalos < 2) {
+      alert('Precisamos de no minímo 2 Cavalos.')
+    } else if (quantidadeCavalos > 6) {
+      alert('Quantidade maxíma de Cavalos é 6')
+    } else if (quantidadeVoltas == 0) {
+      alert('Quantidade de voltas deve ser maior que 0')
+    } else {
+      var mensagem = ''
+      for (var i = 0; i < quantidadeCavalos; i++) {
+        mensagem += `Cavalo ${i + 1}: <br>`
+      }
+      nomeCavalos.innerHTML = mensagem
+      
+      document.getElementById('tela1').style.display = 'none'
+      document.getElementById('tela2').style.display = 'block'
+    }
+  }
+  
+  function voltar() {
+    listaCavalos = []
+    nomeCavalos.innerHTML = ''
+    quantidadeCavalos = 0
+    quantidadeVoltas = 0
+
+    document.getElementById('tela1').style.display = 'block'
+    document.getElementById('tela2').style.display = 'none'
+  }
+
+  function excluir() {
+    if (listaCavalos.length == 0) {
+      alert('Não tem Cavalos para excluir')
+    } else {
+      var cavaloExcluir = Number(prompt('Digite o número do Cavalo a ser excluído!'))
+      if (isNaN(cavaloExcluir)) {
+        alert('Não foi digitado um número válido para a exclusão do Cavalo')
+      } else {
+        if (listaCavalos[(cavaloExcluir - 1)] == undefined || listaCavalos.length < cavaloExcluir) {
+          alert('O Cavalo com este número não existe')
+        } else {
+          var arrayAuxiliar = []
+          for (var i = 0; i < listaCavalos.length; i++) {
+            if ((i + 1) != cavaloExcluir) {
+              arrayAuxiliar.push(listaCavalos[i])
+            }
+          }
+          alert(`Cavalo ${listaCavalos[cavaloExcluir - 1]} excluído!`)
+          listaCavalos = arrayAuxiliar
+
+          var mensagem = ''
+          var nomeAtual = ''
+            for (var i = 0; i < quantidadeCavalos; i++) {
+              nomeAtual = listaCavalos[i]
+              if (nomeAtual == undefined) {
+                nomeAtual = ''
+              }
+              mensagem += `Cavalo ${i + 1}: ${nomeAtual}<br>`
+            }
+            nomeCavalos.innerHTML = mensagem
+        }
+      }
+    }
+  }
+
+  function cadastrar() {
+    if (listaCavalos.length >= quantidadeCavalos) {
+      alert('Já foi cadastrado todos os Cavalos.')
+    } else {
+      var nomeCavalo = input_cadastrarCavalo.value
+  
+      listaCavalos.push(nomeCavalo)
+  
+      var mensagem = ''
+      var nomeAtual = ''
+        for (var i = 0; i < quantidadeCavalos; i++) {
+          nomeAtual = listaCavalos[i]
+          if (nomeAtual == undefined) {
+            nomeAtual = ''
+          }
+          mensagem += `Cavalo ${i + 1}: ${nomeAtual}<br>`
+        }
+        nomeCavalos.innerHTML = mensagem
+    }
+  }
+
+  function iniciar() {
+    if (listaCavalos.length != quantidadeCavalos) {
+      alert('Você ainda não preencheu todos os Cavalos!')
+      return
+    }
+
+
+    var mensagem = "";
+    var mensagem2 = ''
+    var mensagem3 = ''
+    var mensagem4 = ''
+    if (quantidadeCavalos <= 0 && quantidadeCavalos>6) {
+      mensagem = `Digite um valor válido`;
+    } else {
+      mensagem = "";
+      mensagem2 = ''
+      mensagem3 = ''
+      mensagem4 = ''
+
+      for (var l = 0; l < quantidadeCavalos; l++) {
+
+        TempoAcumulado.push(0)
+      }
+
+
+      for (var i = 0; i < quantidadeVoltas; i++) {
+        mensagem += `<br><br>Rodada ${i+1}<br><br>`;
+
+        mensagem2 = ''
+        
+        // gerar a velocidade aleatória pra cada um
+        for (var j = 0; j < quantidadeCavalos; j++) {
+
+          var velocidade = Math.random() * 2 + 7;
+          velocidade = velocidade.toFixed(1);
+          velocidade = Number(velocidade)
+
+          listaTempRodada[j] = velocidade
+          TempoAcumulado[j] += listaTempRodada[j]
+
+          
+
+          mensagem2 +=`Cavalo ${listaCavalos[j]} - ${listaTempRodada[j]} - ${TempoAcumulado[j].toFixed(1)} <br>`;
+          
+        }
+
+        var nomePrimeiro = ''
+        var primeiro = 1000000000
+        var nomeSegundo = ''
+        var segundo = 1000000000
+
+        for (var k = 0; k <= quantidadeCavalos; k++) {
+          if (TempoAcumulado[k] < primeiro) {
+            nomeSegundo = nomePrimeiro
+            segundo = primeiro
+            nomePrimeiro = listaCavalos[k]
+            primeiro = TempoAcumulado[k]
+          } else if (TempoAcumulado[k] < segundo) {
+            nomeSegundo = listaCavalos[k]
+            segundo = TempoAcumulado[k]
+          }
+        }
+
+        var diferenca = segundo - primeiro
+
+        mensagem3 = `Cavalo ${nomePrimeiro} está ganhando com uma vantagem de ${diferenca.toFixed(2)} segundos<br><br>`
+        
+        mensagem += mensagem3 + mensagem2
+      }
+
+      // Top 3
+
+      var podiumNomePrimeiro = ''
+      var podiumPrimeiro = 1000000000
+      var podiumNomeSegundo = ''
+      var podiumSegundo = 1000000000
+      var podiumNomeTerceiro = ''
+      var podiumTerceiro = 1000000000
+
+      for (var k = 0; k <= quantidadeCavalos; k++) {
+        if (TempoAcumulado[k] < podiumPrimeiro) {
+          podiumNomeTerceiro = podiumNomeSegundo
+          podiumTerceiro = podiumSegundo
+          podiumNomeSegundo = podiumNomePrimeiro
+          podiumSegundo = podiumPrimeiro
+          podiumNomePrimeiro = listaCavalos[k]
+          podiumPrimeiro = TempoAcumulado[k]
+        } else if (TempoAcumulado[k] < podiumSegundo) {
+          podiumNomeTerceiro = podiumNomeSegundo
+          podiumTerceiro = podiumSegundo
+          podiumNomeSegundo = listaCavalos[k]
+          podiumSegundo = TempoAcumulado[k]
+        } else if (TempoAcumulado[k] < podiumTerceiro) {
+          podiumNomeTerceiro = listaCavalos[k]
+          podiumTerceiro = TempoAcumulado[k]
+        }
+      }
+    }
+
+    mensagem4 = `
+      <br><br>Pódio<br><br>
+      1° ${podiumNomePrimeiro} <br>
+      - 2° ${podiumNomeSegundo} <br>
+      - - 3° ${podiumNomeTerceiro}
+    `
+
+    mensagem += mensagem4
+
+    div_mensagem.innerHTML = mensagem;
+  }
+</script>
