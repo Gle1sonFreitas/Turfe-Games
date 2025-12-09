@@ -1,0 +1,77 @@
+/* Inicio importação de fontes */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
+.title_text {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.body_text {
+  font-family: "Crimson Text", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Fim importação de fontes */
+
+/* ------------------------------------------------------ */
+
+/* Inicio do reset css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    background: none;
+
+}
+
+html, body{
+
+    max-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+
+}
+
+body {
+
+  background-color: var(--bg-page);
+  color: var(--text-color-padrao);
+
+}
+
+a {
+
+    text-decoration: none;
+    color: inherit;
+
+}
+
+li {
+
+    list-style: none;
+
+}
+
+/* Fim do css reset */
+
+/* ------------------------------------------------------ */
+
+/* Inicio declaração de variaveis de cor */
+
+:root {
+
+    --Marrom-escuro: rgba(78, 26, 11, 1);
+    --Marrom-intermediario: rgba(115, 73, 56, 1);
+    --Marrom-claro: rgba(180, 134, 93, 1);
+    --Marrom-escuro: rgba(78, 26, 11, 1);
+    --bg-button: rgba(37, 25, 20, .4);
+
+
+}

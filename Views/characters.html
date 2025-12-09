@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Characters</title>
+
+    <link rel="stylesheet" href="../Styles/global.css">
+    <link rel="stylesheet" href="../Styles/characters.css">
+    <link rel="shortcut icon" href="../Assets/Icons/favIcon.svg" type="image/x-icon">
+
+</head>
+<body onload="Characeters()"> 
+
+    <header class="container_title">
+
+        <img class="logo" src="../Assets/Icons/Logo.svg" alt="">
+        
+        <div class="div_title">
+            <h1 class="title_text">Turfe Games</h1>
+            <h3 class="body_text subtitle">O Corcel Negro</h3>
+        </div>
+
+    </header>
+    
+    <main id="container_characters" class="container_characters">
+        
+        <section class="characters">
+
+            <button class="btn_options" onclick="scrolling(1,1)" > < </button>
+                <div id="player1" class="players">
+                    <h2 id="NomePlayer1" class="title_text"></h2>
+                    <div id="imgPlayer1" class="img_options"></div>
+                    <button id="btnPlayer1" class="btn_selection title_text" onclick="Come(1)" >Come</button> 
+                </div>
+            <button class="btn_options" onclick="scrolling(1,2)" style="margin-right: 2%;"> > </button>
+
+            <button class="btn_options" onclick="scrolling(2,1)"> < </button>
+                <div id="player2" class="players">
+                    <h2 id="NomePlayer2" class="title_text"></h2> 
+                    <div id="imgPlayer2" class="img_options"></div>
+                    <button id="btnPlayer2" class="btn_selection title_text" onclick="Come(2)" >Come</button> 
+                </div>
+            <button class="btn_options" onclick="scrolling(2,2)" style="margin-right: 2%;"> > </button>
+
+            <button class="btn_options" onclick="scrolling(3,1)"> < </button>
+                <div id="player3" class="players">
+                    <h2 id="NomePlayer3" class="title_text"></h2> 
+                    <div id="imgPlayer3" class="img_options"></div>
+                    <button id="btnPlayer3" class="btn_selection title_text" onclick="Come(3)" >Come</button> 
+                </div>
+            <button class="btn_options" onclick="scrolling(3,2)" style="margin-right: 2%;"> > </button>
+
+            <button class="btn_options" onclick="scrolling(4,1)"> < </button>
+                <div id="player4" class="players">
+                    <h2 id="NomePlayer4" class="title_text"></h2> 
+                    <div id="imgPlayer4" class="img_options"></div>
+                    <button id="btnPlayer4" class="btn_selection title_text" onclick="Come(4)" >Come</button> 
+                </div>
+            <button class="btn_options" onclick="scrolling(4,2)"> > </button>
+
+        </section>
+        
+        <button class="btn_ride">
+            <img src="" alt="">
+            RIDE!
+        </button>
+
+    </main>
+
+    <img id="SmokeOverlay" src="../Assets/Customs/SmokeOverlay.png" alt="">
+
+</body>
+</html>
+
+<script src="../Scripts/Characters/chracters.js"></script>
