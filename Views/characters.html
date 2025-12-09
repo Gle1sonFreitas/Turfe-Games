@@ -11,7 +11,9 @@
     <link rel="shortcut icon" href="../Assets/Icons/favIcon.svg" type="image/x-icon">
 
 </head>
-<body onload="Characeters()"> 
+<body onload="Characeters(), IniciarSong(2)"> 
+
+    <button id="close" onclick="window.location = 'index.html'">Sair</button>
 
     <header class="container_title">
 
@@ -62,10 +64,7 @@
 
         </section>
         
-        <button class="btn_ride">
-            <img src="" alt="">
-            RIDE!
-        </button>
+        <button id="ride" class="btn_ride title_text" onclick="">RIDE!</button>
 
     </main>
 
@@ -75,3 +74,4 @@
 </html>
 
 <script src="../Scripts/Characters/chracters.js"></script>
+<script src="../Scripts/soundTrack.js"></script>

@@ -68,6 +68,8 @@ var readyActive2 = false
 var readyActive3 = false
 var readyActive4 = false
 
+var ride = document.getElementById('ride')
+
 
 function Characeters (){
     
@@ -75,6 +77,7 @@ function Characeters (){
     player02.innerHTML = listaPersonagens[0].imagem
     player03.innerHTML = listaPersonagens[0].imagem
     player04.innerHTML = listaPersonagens[0].imagem
+    sessionStorage.clear()
     
 }
 
@@ -238,31 +241,32 @@ var countReady = 0
 
 function Ready(player){
 
-
     if (player == 1){
         
         if (readyActive1 == false){
-            btnPlayer1.style.backgroundColor = 'var(--bg-button-ready)'
+            btnPlayer1.classList.add('Active')
             readyActive1 = true
-            sessionStorage.PLAYER_SELECTED1 = optionActive1
+            sessionStorage.PLAYER1_SELECTED = optionActive1
             countReady++
         }else {
-            btnPlayer1.style.backgroundColor = 'var(--bg-button)'
+            btnPlayer1.classList.remove('Active')
             readyActive1 = false
+            sessionStorage.removeItem('PLAYER1_SELECTED')
             countReady--
         }
 
     }else if (player == 2){
         
         if (readyActive2 == false){
-            btnPlayer2.style.backgroundColor = 'var(--bg-button-ready)'
+            btnPlayer2.classList.add('Active')
             readyActive2 = true
-            sessionStorage.PLAYER_SELECTED2 = optionActive2
+            sessionStorage.PLAYER2_SELECTED = optionActive2
             countReady++
 
         }else {
-            btnPlayer2.style.backgroundColor = 'var(--bg-button)'
+            btnPlayer2.classList.remove('Active')
             readyActive2 = false
+            sessionStorage.removeItem('PLAYER2_SELECTED')
             countReady--
 
         }
@@ -270,14 +274,15 @@ function Ready(player){
     }else if (player == 3){
         
         if (readyActive3 == false){
-            btnPlayer3.style.backgroundColor = 'var(--bg-button-ready)'
+            btnPlayer3.classList.add('Active')
             readyActive3 = true
-            sessionStorage.PLAYER_SELECTED3 = optionActive3
+            sessionStorage.PLAYER3_SELECTED = optionActive3
             countReady++
 
         }else {
-            btnPlayer3.style.backgroundColor = 'var(--bg-button)'
+            btnPlayer3.classList.remove('Active')
             readyActive3 = false
+            sessionStorage.removeItem('PLAYER3_SELECTED')
             countReady--
 
         }
@@ -285,24 +290,38 @@ function Ready(player){
     }else{
         
         if (readyActive4 == false){
-            btnPlayer4.style.backgroundColor = 'var(--bg-button-ready)'
+            btnPlayer4.classList.add('Active')
             readyActive4 = true
-            sessionStorage.PLAYER_SELECTED4 = optionActive4
+            sessionStorage.PLAYER4_SELECTED = optionActive4
             countReady++
 
         }else {
-            btnPlayer4.style.backgroundColor = 'var(--bg-button)'
+            btnPlayer4.classList.remove('Active')
             readyActive4 = false
+            sessionStorage.removeItem('PLAYER4_SELECTED')
             countReady--
 
         }
         
     }
 
-    if (playersActive == countReady){
+    if (playersActive == countReady && playersActive > 1){
 
-        
+        ride.classList.add('Active')
+        ride.onclick = () => {Ride()}
+
+    }else {
+
+        ride.classList.remove('Active')
+        ride.onclick = () => {}
 
     }
     
+}
+
+function Ride(){
+
+    
+    window.location = 'index.html'
+
 }
