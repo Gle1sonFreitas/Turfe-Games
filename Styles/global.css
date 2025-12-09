@@ -72,6 +72,7 @@ li {
     --Marrom-claro: rgba(180, 134, 93, 1);
     --Marrom-escuro: rgba(78, 26, 11, 1);
     --bg-button: rgba(37, 25, 20, .4);
+    --bg-button-ready: rgba(255, 77, 0, 0.4);
 
 
 }

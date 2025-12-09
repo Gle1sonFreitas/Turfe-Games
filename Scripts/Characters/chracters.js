@@ -31,13 +31,13 @@ var listaPersonagens = [
 },{
 
     nome: 'Cavaleiro04',
-    imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro04.png" alt="">',
+    imagem: '<img class="options" src="../Assets/Sprites/Cavaleira04.png" alt="">',
     status: 0 
 
 },{
 
     nome: 'Cavaleiro05',
-    imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro05.png" alt="">',
+    imagem: '<img class="options" src="../Assets/Sprites/Cavaleira05.png" alt="">',
     status: 0 
 
 },{
@@ -63,154 +63,246 @@ var btnPlayer2 = document.getElementById('btnPlayer2')
 var btnPlayer3 = document.getElementById('btnPlayer3')
 var btnPlayer4 = document.getElementById('btnPlayer4')
 
-function Characeters (){
+var readyActive1 = false
+var readyActive2 = false
+var readyActive3 = false
+var readyActive4 = false
 
+
+function Characeters (){
+    
     player01.innerHTML = listaPersonagens[0].imagem
     player02.innerHTML = listaPersonagens[0].imagem
     player03.innerHTML = listaPersonagens[0].imagem
     player04.innerHTML = listaPersonagens[0].imagem
-
+    
 }
+
+var playersActive = 0
 
 function Come(player){
 
     if(player == 1){
 
-        btnPlayer1.innerHTML = "ready"
+        btnPlayer1.innerHTML = "ready" 
+        btnPlayer1.onclick = () => {Ready(1)} 
         player01.innerHTML = listaPersonagens[1].imagem
         NomePlayer1.innerHTML = listaPersonagens[1].nome
+        playersActive++
 
     }else if (player == 2){
         
-        btnPlayer2.innerHTML = "ready"
+        btnPlayer2.innerHTML = "ready" 
+        btnPlayer2.onclick = () => {Ready(2)} 
         player02.innerHTML = listaPersonagens[1].imagem
         NomePlayer2.innerHTML = listaPersonagens[1].nome
+        playersActive++
 
     }else if (player == 3){
         
-        btnPlayer3.innerHTML = "ready"
+        btnPlayer3.innerHTML = "ready" 
+        btnPlayer3.onclick = () => {Ready(3)} 
         player03.innerHTML = listaPersonagens[1].imagem
         NomePlayer3.innerHTML = listaPersonagens[1].nome
+        playersActive++
 
     }else {
 
-        btnPlayer4.innerHTML = "ready"
+        btnPlayer4.innerHTML = "ready" 
+        btnPlayer4.onclick = () => {Ready(4)} 
         player04.innerHTML = listaPersonagens[1].imagem
         NomePlayer4.innerHTML = listaPersonagens[1].nome
+        playersActive++
 
     }
 
 }
 
-var active = 0
+var optionActive1 = 1
+var optionActive2 = 1
+var optionActive3 = 1
+var optionActive4 = 1
 
 function scrolling (player, PrevNext) {
 
     if (player == 1 && PrevNext == 1){
 
-        active --
+        optionActive1 --
 
-        if(active == 1){
+        if(optionActive1 <= 0){
 
-            active = listaPersonagens.length - 1
+            optionActive1 = listaPersonagens.length - 1
 
         }
 
-        player01.innerHTML = listaPersonagens[active].imagem
-        NomePlayer1.innerHTML = listaPersonagens[active].nome
+        player01.innerHTML = listaPersonagens[optionActive1].imagem
+        NomePlayer1.innerHTML = listaPersonagens[optionActive1].nome
+
 
     }else if (player == 1 && PrevNext == 2){
 
-        active ++
+        optionActive1 ++
 
-        if(active == listaPersonagens.length - 1){
+        if(optionActive1 >= listaPersonagens.length){
 
-            active = 0
+            optionActive1 = 1
 
         }
 
-        player01.innerHTML = listaPersonagens[1 + active].imagem
-        NomePlayer1.innerHTML = listaPersonagens[1 + active].nome
+        player01.innerHTML = listaPersonagens[optionActive1].imagem
+        NomePlayer1.innerHTML = listaPersonagens[optionActive1].nome
 
     }else if (player == 2 && PrevNext == 1){
 
-        active --
+        optionActive2 --
 
-        if(active == 0){
+        if(optionActive2 <= 0){
 
-            active = listaPersonagens.length
+            optionActive2 = listaPersonagens.length - 1
 
         }
 
-        player02.innerHTML = listaPersonagens[1 - active].imagem
-        NomePlayer2.innerHTML = listaPersonagens[1 - active].nome
+        player02.innerHTML = listaPersonagens[optionActive2].imagem
+        NomePlayer2.innerHTML = listaPersonagens[optionActive2].nome
 
     }else if (player == 2 && PrevNext == 2){
 
-        active ++
+        optionActive2 ++
 
-        if(active == listaPersonagens.length - 1){
+        if(optionActive2 >= listaPersonagens.length){
 
-            active = 0
+            optionActive2 = 1
 
         }
 
-        player02.innerHTML = listaPersonagens[1 + active].imagem
-        NomePlayer2.innerHTML = listaPersonagens[1 + active].nome
+        player02.innerHTML = listaPersonagens[optionActive2].imagem
+        NomePlayer2.innerHTML = listaPersonagens[optionActive2].nome
 
     }else if (player == 3 && PrevNext == 1){
 
-        active --
+        optionActive3 --
 
-        if(active == 0){
+        if(optionActive3 <= 0){
 
-            active = listaPersonagens.length
+            optionActive3 = listaPersonagens.length - 1
 
         }
 
-        player03.innerHTML = listaPersonagens[1 - active].imagem
-        NomePlayer3.innerHTML = listaPersonagens[1 - active].nome
+        player03.innerHTML = listaPersonagens[optionActive3].imagem
+        NomePlayer3.innerHTML = listaPersonagens[optionActive3].nome
 
     }else if (player == 3 && PrevNext == 2){
 
-        active ++
+        optionActive3 ++
 
-        if(active == listaPersonagens.length - 1){
+        if(optionActive3 >= listaPersonagens.length){
 
-            active = 0
+            optionActive3 = 1
 
         }
 
-        player03.innerHTML = listaPersonagens[1 + active].imagem
-        NomePlayer3.innerHTML = listaPersonagens[1 + active].nome
+        player03.innerHTML = listaPersonagens[optionActive3].imagem
+        NomePlayer3.innerHTML = listaPersonagens[optionActive3].nome
 
     }else if (player == 4 && PrevNext == 1){
 
-        active --
+        optionActive4 --
 
-        if(active == 0){
+        if(optionActive4 <= 0){
 
-            active = listaPersonagens.length
+            optionActive4 = listaPersonagens.length - 1
 
         }
 
-        player03.innerHTML = listaPersonagens[1 - active].imagem
-        NomePlayer3.innerHTML = listaPersonagens[1 - active].nome
+        player04.innerHTML = listaPersonagens[optionActive4].imagem
+        NomePlayer4.innerHTML = listaPersonagens[optionActive4].nome
 
     }else if (player == 4 && PrevNext == 2){
 
-        active ++
+        optionActive4 ++
 
-        if(active == listaPersonagens.length - 1){
+        if(optionActive4 >= listaPersonagens.length){
 
-            active = 0
+            optionActive4 = 1
 
         }
 
-        player04.innerHTML = listaPersonagens[1 + active].imagem
-        NomePlayer4.innerHTML = listaPersonagens[1 + active].nome
+        player04.innerHTML = listaPersonagens[optionActive].imagem
+        NomePlayer4.innerHTML = listaPersonagens[optionActive].nome
 
     }
 
+}
 
+var countReady = 0
+
+function Ready(player){
+
+
+    if (player == 1){
+        
+        if (readyActive1 == false){
+            btnPlayer1.style.backgroundColor = 'var(--bg-button-ready)'
+            readyActive1 = true
+            sessionStorage.PLAYER_SELECTED1 = optionActive1
+            countReady++
+        }else {
+            btnPlayer1.style.backgroundColor = 'var(--bg-button)'
+            readyActive1 = false
+            countReady--
+        }
+
+    }else if (player == 2){
+        
+        if (readyActive2 == false){
+            btnPlayer2.style.backgroundColor = 'var(--bg-button-ready)'
+            readyActive2 = true
+            sessionStorage.PLAYER_SELECTED2 = optionActive2
+            countReady++
+
+        }else {
+            btnPlayer2.style.backgroundColor = 'var(--bg-button)'
+            readyActive2 = false
+            countReady--
+
+        }
+
+    }else if (player == 3){
+        
+        if (readyActive3 == false){
+            btnPlayer3.style.backgroundColor = 'var(--bg-button-ready)'
+            readyActive3 = true
+            sessionStorage.PLAYER_SELECTED3 = optionActive3
+            countReady++
+
+        }else {
+            btnPlayer3.style.backgroundColor = 'var(--bg-button)'
+            readyActive3 = false
+            countReady--
+
+        }
+
+    }else{
+        
+        if (readyActive4 == false){
+            btnPlayer4.style.backgroundColor = 'var(--bg-button-ready)'
+            readyActive4 = true
+            sessionStorage.PLAYER_SELECTED4 = optionActive4
+            countReady++
+
+        }else {
+            btnPlayer4.style.backgroundColor = 'var(--bg-button)'
+            readyActive4 = false
+            countReady--
+
+        }
+        
+    }
+
+    if (playersActive == countReady){
+
+        
+
+    }
+    
 }

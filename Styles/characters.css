@@ -101,7 +101,7 @@ body {
 
 .btn_options{
 
-    width: 1.5%;
+    width: 1.25%;
     height: 4%;
     align-self: center;
     display: flex;
@@ -132,7 +132,7 @@ body {
 
 .players h2 {
 
-    height: 10%;
+    height: 5%;
 
 }
 
@@ -144,8 +144,18 @@ body {
     border-radius: 20px;
     background-color: var(--bg-button);
     position: absolute;
-    bottom: 30%;
+    bottom: 20%;
     cursor: pointer;
+
+}
+
+.btn_ride{
+
+    position: absolute;
+    bottom: 10%;
+    z-index: 100;
+    cursor: pointer;
+    background-color: rgba(177, 59, 29, .8);
 
 }
 
