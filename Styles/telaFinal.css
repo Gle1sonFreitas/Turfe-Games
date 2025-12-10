@@ -117,3 +117,26 @@ body {
     margin-top: 15px;
 
 }
+
+#Voltar {
+
+    border: 2px solid white;
+    border-radius: 15px;
+    width: 8%;
+    height: 5%;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    color: white;
+    background-color: rgba(177, 59, 29, 1);
+    box-shadow: 0px 0px 20px rgba(177, 59, 29, 1);
+    font-size: x-large;
+
+
+}
+
+#Voltar:hover {
+
+    transform: translate(2px) scale(1.1);
+
+}

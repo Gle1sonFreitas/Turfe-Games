@@ -2,17 +2,17 @@
     {
         nome: 'Mundo antigo',
         imagem: '<img class="options" src="../Assets/img/BackgroundMap1.png" alt="">',
-        status: 1
+        voltas: 1
     },
     {
         nome: 'Nova Vida',
         imagem: '<img class="options" src="../Assets/img/BackgroundMap2.png" alt="">',
-        status: 1
+        Voltas: 3
     },
     {
         nome: 'Casa dos cavalhos',
         imagem: '<img class="options" src="../Assets/img/BackgroundMap3.png" alt="">',
-        status: 1
+        Voltas: 6
     }
 ]
 
@@ -54,8 +54,6 @@ function Come(player) {
         sessionStorage.MAPA_SELECTED = 1;
     } else if (player == 3) {
         sessionStorage.MAPA_SELECTED = 2;
-    } else {
-        sessionStorage.MAPA_SELECTED = 3;
     }
 
         alert("Mapa selecionado: " + listarmapas[sessionStorage.MAPA_SELECTED].nome);

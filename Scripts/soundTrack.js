@@ -12,6 +12,18 @@ function IniciarSong (tela){
         
         trilhaSonoraCharacters()
         
+    }else if(tela == 3){
+
+        trilhaSonoraCut()
+
+    }else if (4){
+
+        trilhaSonoraUpdate()
+
+    }else{
+
+        trilhaSonoraWin()
+
     }
     
 }
@@ -44,6 +56,51 @@ function TrilhaSonoraMenu () {
 function trilhaSonoraCharacters (){
 
     var trilhaSonora = new Audio('../Assets/Audio/TrilhaSonora/trilhaCharacters.mp3')
+
+    if (!trilhaAtivacao){
+
+        trilhaSonora.play();
+        trilhaAtivacao = true
+
+    }
+
+    trilhaSonora.loop = true;
+
+}
+
+function trilhaSonoraCut() {
+
+    var trilhaSonora = new Audio('../Assets/Audio/TrilhaSonora/trilhaCut.mp3')
+
+    if (!trilhaAtivacao){
+
+        trilhaSonora.play();
+        trilhaAtivacao = true
+
+    }
+
+    trilhaSonora.loop = true;
+
+}   
+
+function trilhaSonoraUpdate() {
+
+    var trilhaSonora = new Audio('../Assets/Audio/TrilhaSonora/trilhaCut02.mp3')
+
+    if (!trilhaAtivacao){
+
+        trilhaSonora.play();
+        trilhaAtivacao = true
+
+    }
+
+    trilhaSonora.loop = true;
+
+}  
+
+function trilhaSonoraWin(){
+
+      var trilhaSonora = new Audio('../Assets/Audio/TrilhaSonora/trilhaFase02.mp3')
 
     if (!trilhaAtivacao){
 
