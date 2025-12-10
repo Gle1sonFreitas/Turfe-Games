@@ -1,17 +1,17 @@
  var listarmapas = [
     {
         nome: 'Mundo antigo',
-        imagem: '<img class="options" src="../Assets/img/Mapa1.png" alt="">',
+        imagem: '<img class="options" src="../Assets/img/BackgroundMap1.png" alt="">',
         status: 1
     },
     {
         nome: 'Nova Vida',
-        imagem: '<img class="options" src="../Assets/img/Mapa2.png" alt="">',
+        imagem: '<img class="options" src="../Assets/img/BackgroundMap2.png" alt="">',
         status: 1
     },
     {
         nome: 'Casa dos cavalhos',
-        imagem: '<img class="options" src="../Assets/img/Mapa3.png" alt="">',
+        imagem: '<img class="options" src="../Assets/img/BackgroundMap3.png" alt="">',
         status: 1
     }
 ]
@@ -61,6 +61,13 @@ function Come(player) {
         alert("Mapa selecionado: " + listarmapas[sessionStorage.MAPA_SELECTED].nome);
 
 }
+
+function Race(){
+
+    window.location = 'race.html'
+
+}
+
 CarregarMapas();
 
 

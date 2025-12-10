@@ -230,8 +230,8 @@ function scrolling (player, PrevNext) {
 
         }
 
-        player04.innerHTML = listaPersonagens[optionActive].imagem
-        NomePlayer4.innerHTML = listaPersonagens[optionActive].nome
+        player04.innerHTML = listaPersonagens[optionActive4].imagem
+        NomePlayer4.innerHTML = listaPersonagens[optionActive4].nome
 
     }
 
