@@ -56,26 +56,17 @@
   var quantidadeVoltas = 0
 
   function continuar() {
-    quantidadeCavalos = Number(input_quantidadeCavalos.value)
-    quantidadeVoltas = Number(input_quantidadeVoltas.value)
+    quantidadeCavalos = 2
+    quantidadeVoltas = 1
 
-    if (quantidadeCavalos < 2) {
-      alert('Precisamos de no minímo 2 Cavalos.')
-    } else if (quantidadeCavalos > 6) {
-      alert('Quantidade maxíma de Cavalos é 6')
-    } else if (quantidadeVoltas == 0) {
-      alert('Quantidade de voltas deve ser maior que 0')
-    } else {
       var mensagem = ''
-      for (var i = 0; i < quantidadeCavalos; i++) {
-        mensagem += `Cavalo ${i + 1}: <br>`
-      }
+    
       nomeCavalos.innerHTML = mensagem
       
       document.getElementById('tela1').style.display = 'none'
       document.getElementById('tela2').style.display = 'block'
     }
-  }
+  
   
   function voltar() {
     listaCavalos = []

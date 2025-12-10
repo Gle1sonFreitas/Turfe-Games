@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turfe JS - Sincronizado</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #e0d0a0;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            border: 6px solid #4a2505;
+        }
+
+        #bg-unico {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('../Assets/img/mapa-2V4.png');
+            background-repeat: repeat-x;
+            background-position: 0 bottom;
+            background-size: auto 100%;
+            z-index: 0;
+            image-rendering: pixelated;
+        }
+
+        .cavalo {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            image-rendering: pixelated;
+        }
+
+        .numero-cavalo {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            padding: 2px 5px;
+            font-size: 14px;
+            border-radius: 4px;
+            font-weight: 900;
+            color: #333;
+            white-space: nowrap;
+            border: 2px solid #000;
+            z-index: 1000;
+        }
+
+        #ui {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 300;
+            background: #5a2d0c;
+            padding: 15px;
+            border-radius: 4px;
+            color: #f0e6d2;
+            border: 4px solid #c2b280;
+            text-align: center;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        #ui h2 {
+            margin: 0 0 10px 0;
+            font-size: 20px;
+            border-bottom: 2px dashed #c2b280;
+            padding-bottom: 5px;
+        }
+
+        button {
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            background: #e6cc80;
+            border: 2px solid #333;
+            font-weight: 900;
+            color: #333;
+            margin: 5px;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background: #fff;
+        }
+
+        #mensagem {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .log-entry {
+            font-size: 11px;
+            border-bottom: 1px solid #443322;
+            margin-bottom: 2px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="game-container">
+        <div id="bg-unico"></div>
+
+        <div id="ui">
+            <h2>Derby Elite</h2>
+            <button onclick="iniciarCorrida()">Largar</button>
+            <button onclick="resetarCorrida()">Resetar</button>
+            <div id="mensagem">Pronto?</div>
+            <br>
+            <h3>Resultados por Volta</h3>
+            <div id="conteudo-logs">Aguardando início...</div>
+        </div>
+    </div>
+
+    <script>
+        var QTD_CAVALOS = sessionStorage.QUANTIDADE_COMPETIDORES || 4; 
+        var GAME_WIDTH = document.getElementById('game-container').offsetWidth;
+        var COMPRIMENTO_PISTA = GAME_WIDTH * 3; 
+
+        var framesCavalo = [
+            '../Assets/sprint-1.png', 
+            '../Assets/sprint-2.png', 
+            '../Assets/sprint-4.png'  
+        ];
+
+        var cavalos = [];
+        var corridaAndando = false;
+        var loopId;
+        var bgPos = 0;
+        var velocidadeMundo = 5; 
+        var intervaloVisualLog = null; 
+        var MAX_VOLTAS = 7;
+        function criarCavalo(id, numero, indiceVisual) {
+            
+            var cavalo = {
+                id: id,
+                numero: numero,
+                x: 50 + (Math.random() * 20), 
+                y: 0,
+                velocidadeAtual: velocidadeMundo, 
+                velocidadeAlvo: velocidadeMundo, 
+                
+                finalizou: false,
+                frameIndex: 0,
+                intervaloAnimacao: null,
+                escala: 0,
+                oscilacaoY: 0,
+                tempoOscilacao: Math.random() * 10,
+                elemento: document.createElement('img'),
+                tempoAcumulado: 0.0,
+                historicoVoltas: []
+            };
+
+            cavalo.elemento.classList.add('cavalo');
+            cavalo.elemento.src = framesCavalo[0];
+            cavalo.elemento.draggable = false;
+
+            var label = document.createElement('div');
+            label.classList.add('numero-cavalo');
+            label.innerText = numero;
+            cavalo.elemento.appendChild(label);
+
+
+            var alturaUtil = 100; 
+            var margemTopo = 200; 
+            var step = alturaUtil / QTD_CAVALOS;
+            var variacaoRaia = (Math.random() * 6) - 3; 
+            
+            cavalo.y = margemTopo + (indiceVisual * step) + variacaoRaia;
+            var fatorProfundidade = (cavalo.y - margemTopo) / alturaUtil; 
+            cavalo.escala = 0.8 + (fatorProfundidade * 0.3); 
+            cavalo.elemento.style.zIndex = Math.floor(cavalo.y); 
+            
+       
+            cavalo.updateVisuals = function() {
+                var diff = cavalo.velocidadeAtual - velocidadeMundo;
+                var angulo = diff * 2; 
+                var pulo = Math.sin(cavalo.tempoOscilacao) * 5; 
+
+                cavalo.elemento.style.transform = `
+                    translate(${cavalo.x}px, ${cavalo.y + pulo}px) 
+                    scale(${cavalo.escala}) 
+                    rotate(${angulo}deg)
+                `;
+                cavalo.tempoOscilacao += 0.4; 
+            };
+
+            cavalo.iniciarAnimacao = function() {
+                if (cavalo.intervaloAnimacao) return;
+                var fps = 15; 
+                cavalo.intervaloAnimacao = setInterval(function() {
+                    cavalo.elemento.src = framesCavalo[cavalo.frameIndex];
+                    cavalo.frameIndex++;
+                    if (cavalo.frameIndex >= framesCavalo.length) cavalo.frameIndex = 0;
+                }, 1000 / fps);
+            };
+
+            cavalo.pararAnimacao = function() {
+                if (cavalo.intervaloAnimacao) {
+                    clearInterval(cavalo.intervaloAnimacao);
+                    cavalo.intervaloAnimacao = null;
+                }
+            };
+
+            cavalo.correr = function() {
+                if (cavalo.finalizou) return false;
+
+                var inercia = 0.02; 
+                cavalo.velocidadeAtual += (cavalo.velocidadeAlvo - cavalo.velocidadeAtual) * inercia;
+                
+             
+                var deslocamento = (cavalo.velocidadeAtual - velocidadeMundo);
+                cavalo.x += deslocamento;
+
+                cavalo.updateVisuals();
+
+              
+                if (cavalo.x >= GAME_WIDTH - 250) {
+                    cavalo.finalizou = true;
+                    return true;
+                }
+                return false;
+            };
+
+            cavalo.resetar = function() {
+                cavalo.pararAnimacao();
+                cavalo.x = 50 + (Math.random() * 20);
+                cavalo.velocidadeAtual = velocidadeMundo;
+                cavalo.velocidadeAlvo = velocidadeMundo;
+                cavalo.finalizou = false;
+                cavalo.frameIndex = 0;
+                cavalo.elemento.src = framesCavalo[0];
+                cavalo.tempoAcumulado = 0;
+                cavalo.historicoVoltas = [];
+                cavalo.updateVisuals();
+            };
+
+            cavalo.remover = function() {
+                cavalo.elemento.remove();
+            };
+
+            cavalo.updateVisuals();
+            document.getElementById('game-container').appendChild(cavalo.elemento);
+
+            return cavalo;
+        }
+
+
+        function preCalcularCorrida() {
+            var menorTempoTotal = 9999;
+            var piorTempoTotal = 0;
+
+      
+            for (var i = 0; i < cavalos.length; i++) {
+                var c = cavalos[i];
+                c.tempoAcumulado = 0;
+                
+                for (var v = 0; v < MAX_VOLTAS; v++) {
+                    var tempoVolta = (Math.random() * 2) + 7;
+                    var tempoFormatado = parseFloat(tempoVolta.toFixed(1));
+                    c.tempoAcumulado += tempoFormatado;
+                    c.historicoVoltas.push(tempoFormatado);
+                }
+
+                if (c.tempoAcumulado < menorTempoTotal) menorTempoTotal = c.tempoAcumulado;
+                if (c.tempoAcumulado > piorTempoTotal) piorTempoTotal = c.tempoAcumulado;
+            }
+
+            for (var i = 0; i < cavalos.length; i++) {
+                var c = cavalos[i];
+            
+                var fatorDesempenho = 0;
+                if (piorTempoTotal !== menorTempoTotal) {
+                    fatorDesempenho = (piorTempoTotal - c.tempoAcumulado) / (piorTempoTotal - menorTempoTotal);
+                } else {
+                    fatorDesempenho = 0.5; 
+                }
+
+                
+                c.velocidadeAlvo = velocidadeMundo + 0.2 + (fatorDesempenho * 1.5);
+            }
+        }
+
+        function iniciarExibicaoLogs() {
+            var painel = document.getElementById('conteudo-logs');
+            painel.innerHTML = "";
+            var voltaExibida = 0;
+
+        
+            intervaloVisualLog = setInterval(function() {
+                if (voltaExibida >= MAX_VOLTAS) {
+                    clearInterval(intervaloVisualLog);
+                    return;
+                }
+
+                var htmlVolta = "<strong>--- Volta " + (voltaExibida + 1) + " ---</strong><br>";
+                var tempoAcumuladoNestaVolta = 0; 
+
+                for (var i = 0; i < cavalos.length; i++) {
+                    var c = cavalos[i];
+                    var tempo = c.historicoVoltas[voltaExibida];
+                    
+                 
+                    var somaAteAgora = 0;
+                    for(var k=0; k<=voltaExibida; k++) somaAteAgora += c.historicoVoltas[k];
+
+                    htmlVolta += "Cavalo " + c.numero + ": " + tempo.toFixed(1) + " (Total: " + somaAteAgora.toFixed(1) + ")<br>";
+                }
+
+                painel.innerHTML += "<div class='log-entry'>" + htmlVolta + "</div>";
+                var containerLogs = document.getElementById('ui');
+                containerLogs.scrollTop = containerLogs.scrollHeight; 
+
+                voltaExibida++;
+            }, 1000); 
+        }
+
+        function setup() {
+            var antigos = document.querySelectorAll('.cavalo');
+            for (var i = 0; i < antigos.length; i++) {
+                antigos[i].remove();
+            }
+            cavalos = [];
+
+            for (var i = 0; i < QTD_CAVALOS; i++) {
+                var novoCavalo = criarCavalo(i, i + 1, i);
+                cavalos.push(novoCavalo);
+            }
+            updateFundo();
+        }
+
+        function updateFundo() {
+            bgPos -= velocidadeMundo; 
+            document.getElementById('bg-unico').style.backgroundPositionX = bgPos + "px";
+        }
+
+        function gameLoop() {
+            if (!corridaAndando) return;
+
+            updateFundo();
+
+            var alguemChegou = false;
+            var campeaoVisual = null;
+
+            for (var i = 0; i < cavalos.length; i++) {
+                var c = cavalos[i];
+                var cruzou = c.correr();
+               
+                if (cruzou && !alguemChegou) {
+                    alguemChegou = true;
+                    campeaoVisual = c;
+                }
+            }
+
+            if (alguemChegou) {
+                finalizarCorrida(campeaoVisual);
+            } else {
+                loopId = requestAnimationFrame(gameLoop);
+            }
+        }
+
+        function finalizarCorrida(vencedor) {
+            corridaAndando = false;
+            clearInterval(intervaloVisualLog); 
+
+            for (var i = 0; i < cavalos.length; i++) {
+                cavalos[i].pararAnimacao();
+            }
+
+           
+            
+            var msg = document.getElementById('mensagem');
+            
+          
+            var menorTempo = 9999;
+            var campeaoMatematico = null;
+            for(var i=0; i<cavalos.length; i++) {
+                if(cavalos[i].tempoAcumulado < menorTempo) {
+                    menorTempo = cavalos[i].tempoAcumulado;
+                    campeaoMatematico = cavalos[i];
+                }
+            }
+
+            msg.innerText = `VENCEDOR: #${campeaoMatematico.numero} (Tempo: ${campeaoMatematico.tempoAcumulado.toFixed(1)})`;
+            msg.style.color = "#fff";
+            
+            campeaoMatematico.elemento.style.zIndex = 9999;
+            campeaoMatematico.elemento.style.transform += " scale(1.2)";
+            
+          
+            var painel = document.getElementById('conteudo-logs');
+            painel.innerHTML += "<div class='log-entry' style='color:#ffd700; font-weight:bold; border-top:1px solid #ffd700'>FIM DA CORRIDA</div>";
+        }
+
+        function iniciarCorrida() {
+            if (corridaAndando) return;
+
+            var precisaResetar = false;
+            for (var i = 0; i < cavalos.length; i++) {
+                if (cavalos[i].finalizou) {
+                    precisaResetar = true;
+                    break;
+                }
+            }
+            
+            if (precisaResetar) {
+                resetarCorrida();
+                setTimeout(start, 200);
+            } else {
+                start();
+            }
+            
+            function start() {
+             
+                preCalcularCorrida();
+
+                corridaAndando = true;
+                document.getElementById('mensagem').innerText = "VAI!!!";
+                document.getElementById('mensagem').style.color = "#ff4444";
+                
+
+                for (var i = 0; i < cavalos.length; i++) {
+                    cavalos[i].iniciarAnimacao();
+                }
+                
+               
+                iniciarExibicaoLogs();
+
+                gameLoop();
+            }
+        }
+
+        function resetarCorrida() {
+            corridaAndando = false;
+            cancelAnimationFrame(loopId);
+            if(intervaloVisualLog) clearInterval(intervaloVisualLog);
+            
+            document.getElementById('conteudo-logs').innerHTML = "Aguardando início...";
+            bgPos = 0;
+            updateFundo();
+
+            for (var i = 0; i < cavalos.length; i++) {
+                cavalos[i].resetar();
+            }
+            
+            var msg = document.getElementById('mensagem');
+            msg.innerText = "Aguardando...";
+            msg.style.color = "#ffd700";
+        }
+
+        setup();
+
+    </script>
+</body>
+
+</html>

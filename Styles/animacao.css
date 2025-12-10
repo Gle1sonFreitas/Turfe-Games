@@ -1,0 +1,41 @@
+/* Container do Jogo */
+#pista {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background-color: #8B4513;
+    /* Cor de terra */
+    overflow: hidden;
+}
+
+/* O Cavalo (A "Janela") */
+.cavalo {
+    position: absolute;
+    width: 128px;
+    /* Largura de 1 frame do seu sprite */
+    height: 128px;
+    /* Altura de 1 frame */
+
+    background-image: url('seu-spritesheet-cavalo.png');
+    background-repeat: no-repeat;
+
+    /* Pixel Perfect: Garante que não fique borrado ao dar zoom */
+    image-rendering: pixelated;
+
+    /* A ANIMAÇÃO */
+    /* nome | duração | função de tempo | repetição */
+    animation: galopar 0.8s steps(8) infinite;
+}
+
+/* Define o movimento da imagem de fundo */
+@keyframes galopar {
+    from {
+        background-position: 0px;
+    }
+
+    to {
+        background-position: -1024px;
+    }
+
+    /* Largura TOTAL do sprite sheet (128px * 8 frames) */
+}
