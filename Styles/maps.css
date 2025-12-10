@@ -1,162 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
+
 body {
 
-    background: url(../Assets/img/BackgroundCharacters.png);
-    background-repeat: round;
+    background: url(../Assets/img/BackgroundMaps.png);
+    background-size: cover;
+    background-position: center;
     overflow: hidden;
     
 }
 
 .container_title {
-
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 25%;
-
+    justify-content: start;
+    height: 20%;
 }
 
-.div_title{
-
+.div_title {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100%;
-
 }
 
-.title_text{
-
-    font-size: 4.5vw;
-    height: 35%;
-    color: var(--Marrom-escuro);
-
-
+.title_text {
+    font-size: 300%;
+    color: white;
 }
 
 .subtitle {
-
-    font-size: 1.5vw;
-    color: var(--Marrom-intermediario);
-
+    font-size: 150%;
+    color: white;
 }
 
 .logo {
-
-    width: 6%;
-
+    width: 7%;
 }
-
-.container_characters {
-
+.container_maps {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 65%;
     width: 100%;
-    
 }
 
-.characters {
+.textMaps { 
+    font-size: 40px;
+    color: var(--Marrom-escuro); 
+    margin-bottom: 30px;
+}
 
+
+.maps {
     display: flex;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-    gap: .5%;
-
-}
-
-#SmokeOverlay {
-
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50%;
-    z-index: 1;
-    pointer-events: none;
-    
+    gap: 4%;
+    width: 90%;
+    padding: 20px 0;
 }
 
 .players {
-
-    background-image: url(../Assets/Customs/CustomCharacter.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    height: 90%;
-    width: 15%;
+    width: 50%;
+    height: 100%;           
+    background: var(--Marrom-medio);
+    border-radius: 16px;
+    border: 4px solid #f3d6b5;
+    overflow: hidden;          
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
-}
-
-.options{
-
-    width: 125%;
-
-}
-
-.btn_options{
-
-    width: 1.25%;
-    height: 4%;
-    align-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid var(--Marrom-escuro);
-    border-radius: 100%;
-    color: aliceblue;
-    font-weight: 700;
+    position: relative;
+    box-shadow: 0 12px 20px rgba(0,0,0,0.35);
     cursor: pointer;
-
+    transition: 0.2s ease-in-out;
 }
 
-.img_options{
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-
-}
-
-.players .title_text {
-
-    font-size: x-large;
-
+.players:hover {
+    transform: translateY(-6px);
 }
 
 .players h2 {
+     font-family: "Crimson Text", serif;
+  font-weight: 400;
+  font-style: normal;
+    width: 100%;
+    height: 40%;
+    margin: 0;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    height: 5%;
 
+.img_options {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;         
+}
+
+.img_options img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        
 }
 
 .btn_selection {
-
-    height: 7%;
-    width: 60%;
-    border: 2px solid beige;
-    border-radius: 20px;
-    background-color: var(--bg-button);
+    width: 40%;
+    height: 30px;
+    border-radius: 12px;
     position: absolute;
-    bottom: 20%;
+    bottom: 15px;
+    background: #5e3923;
+    color: white;
+    font-size: 20px;
     cursor: pointer;
-
+    border: none;
+    transition: 0.2s;
 }
 
-.btn_ride{
-
-    position: absolute;
-    bottom: 10%;
-    z-index: 100;
-    cursor: pointer;
-    background-color: rgba(177, 59, 29, .8);
-
+.btn_selection:hover {
+    background: #402616;
+    transform: scale(1.05);
 }
 
+.footer_nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.btn_ende {
+    border: 2px solid #D32F2F; 
+    color: white;
+    font-size: 20px;
+    padding: 4px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(211, 47, 47, 0.5);
+}
 

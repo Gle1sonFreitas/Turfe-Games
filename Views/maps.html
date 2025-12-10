@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +10,61 @@
     <link rel="stylesheet" href="../Styles/global.css">
     <link rel="stylesheet" href="../Styles/maps.css">
     <link rel="shortcut icon" href="../Assets/Icons/favIcon.svg" type="image/x-icon">
+    
+</script>
 
 </head>
-<body>
-      <header class="container_title">
 
-        <img class="logo" src="../Assets/Icons/Logo.svg" alt="">
-        
+<body>
+    <header class="container_title">
+
+        <img class="logo" src="../Assets/Icons/LogoCavaloMapas.png" alt="">
+
         <div class="div_title">
             <h1 class="title_text">Turfe Games</h1>
             <h3 class="body_text subtitle">O Corcel Negro</h3>
         </div>
 
     </header>
+
+    <main id="container_maps" class="container_maps">
+
+
+        <div class="header_maps">
+        <h1 class="textMaps">SELECIONA SEU MAPA</h1>
+       </div>
+
+      <section class="maps">
+
+       <div id="player1" class="players">
+        <h2 id="NomePlayer1" class="title_text"></h2>
+        <div id="imgPlayer1" class="img_options"></div>
+        <button id="btnPlayer1" class="btn_selection title_text" onclick="Come(1)">Escolher</button>
+    </div>
+
+    <div id="player2" class="players">
+        <h2 id="NomePlayer2" class="title_text"></h2>
+        <div id="imgPlayer2" class="img_options"></div>
+        <button id="btnPlayer2" class="btn_selection title_text" onclick="Come(2)">Escolher</button>
+    </div>
+
+    <div id="player3" class="players">
+        <h2 id="NomePlayer3" class="title_text"></h2>
+        <div id="imgPlayer3" class="img_options"></div>
+        <button id="btnPlayer3" class="btn_selection title_text" onclick="Come(3)">Escolher</button>
+    </div>
+
+        </section>
+
+    <footer class="footer_nav">
+        <button class="btn_ende">[ ENTRAR ]</button>
+        <button onclick="window.location.href='../Views/index.html'" class="btn_ende">[ SAIR ]</button>
+    </footer>
+    </main>
     
+
+    <script src="../Scripts/Maps.js"></script>
+
 </body>
+
 </html>
