@@ -321,7 +321,7 @@ function Ready(player){
 
 function Ride(){
 
-    
-    window.location = 'index.html'
+    sessionStorage.QUANTIDADE_COMPETIDORES = countReady    
+    window.location = 'maps.html'
 
 }

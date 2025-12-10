@@ -136,13 +136,22 @@ body {
 }
 
 .btn_ende {
-    border: 2px solid #D32F2F; 
     color: white;
     font-size: 20px;
     padding: 4px 25px;
-    border-radius: 10px;
     font-weight: bold;
+    background-color: var(--bg-button);
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
     cursor: pointer;
-    box-shadow: 0 0 12px rgba(211, 47, 47, 0.5);
+}
+
+.btn_ende:hover{
+
+    background-color: rgba(177, 59, 29, 1);
+    box-shadow: 0px 0px 20px rgba(177, 59, 29, 1);
+    transform: translate(2px) scale(1.2);
+
 }
 
