@@ -1,0 +1,149 @@
+body {
+    background: url(../Assets/img/BackgroundMenu.png) no-repeat center;
+    background-size: cover;
+    font-family: "Western", "Georgia", serif;
+    color: #3a2a22;
+}
+
+.top-header {
+    padding: 25px;
+    text-align: center;
+}
+
+.top-header h1 {
+    display: flex;
+    justify-content: left;
+    font-size: 40px;
+    letter-spacing: 3px;
+    margin: 0;
+    color: #3a1d0b;
+    text-shadow: 2px 2px #e2c49b;
+
+}
+
+h1{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+}
+
+.top-header span {
+    font-size: 18px;
+    display: block;
+    opacity: 0.8;
+    margin-top: 4px;
+}
+
+.credits-title {
+    margin-top: 5vw;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: #3a1d0b;
+    text-shadow: 2px 2px #e5ccab;
+}
+
+.credits-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 35px;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.card {
+    width: 260px;
+    background: #e8d5b9;
+    border: 6px solid #3d2b1f;
+    border-radius: 10px;
+    text-align: center;
+    padding-bottom: 20px;
+    position: relative;
+    box-shadow:
+        inset 0 0 0 3px #2b221d,
+        0 6px 8px rgba(0,0,0,0.35);
+    background-image: url("../Assets/img/paper_texture.png"); /* opcional */
+    background-size: cover;
+    opacity: 80%;
+}
+
+.card:before,
+.card:after {
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: url("../Assets/img/corner_western.png");
+    background-size: contain;
+}
+
+.card:before {
+    top: -4px;
+    left: -4px;
+}
+
+.card:after {
+    bottom: -4px;
+    right: -4px;
+}
+
+.card-header {
+    height: 1vw;
+    background: linear-gradient(#503628, #3b2a20);
+    color: #f4e8d0;
+    font-weight: bold;
+    font-size: 22px;
+    padding: 12px 0;
+    border-bottom: 3px solid #221812;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px #2b1a12;
+}
+
+.avatar {
+    width: 110px;
+    height: 110px;
+    background: #d9c7a7;
+    border-radius: 50%;
+    margin: 25px auto 10px;
+    border: 6px solid #4a3b33;
+    box-shadow:
+        inset 0 0 0 3px #2b221d,
+        0 3px 4px rgba(0,0,0,0.4);
+}
+
+.card h3 {
+    margin: 10px 0 5px;
+    font-size: 20px;
+    color: #3a1d0b;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px #e9d9c2;
+}
+
+.card .link {
+    font-size: 15px;
+    color: #3a2a22;
+    opacity: 0.9;
+    margin-top: 4px;
+    text-shadow: 1px 1px #e7d2b5;
+}
+
+.footer {
+    text-align: center;
+    padding: 25px;
+    font-size: 18px;
+    color: #3a1d0b;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px #e6c8a3;
+}
+
+.footer strong {
+    font-weight: bold;
+}
+
+.footer{
+    display: flex;
+    justify-content: start;
+}
