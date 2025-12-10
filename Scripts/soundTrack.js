@@ -131,3 +131,7 @@ function trilhaSonoraFase() {
     trilhaSonora.loop = true;
 
 }
+
+function handleNavigation(url) {
+                window.location.href = url;
+    }
