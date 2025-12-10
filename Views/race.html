@@ -281,7 +281,7 @@
 
                 cavalo.updateVisuals();
 
-                if (cavalo.x >= GAME_WIDTH - 500) {
+                if (cavalo.x >= GAME_WIDTH - 515) {
                     cavalo.finalizou = true;
                     return true;
                 }
@@ -419,31 +419,83 @@
             }
         }
 
-        function finalizarCorrida(vencedorVisual) {
+           function finalizarCorrida(vencedorVisual) {
             corridaAndando = false;
             if(intervaloVisualLog) clearInterval(intervaloVisualLog); 
 
+         
             for (var i = 0; i < cavalos.length; i++) {
                 cavalos[i].pararAnimacao();
             }
 
-            var menorTempo = 9999;
-            var campeaoMatematico = null;
-            for(var i=0; i<cavalos.length; i++) {
-                if(cavalos[i].tempoAcumulado < menorTempo) {
-                    menorTempo = cavalos[i].tempoAcumulado;
-                    campeaoMatematico = cavalos[i];
+            var campeao = null;
+            var tempoCampeao = 99999;
+
+            for (var i = 0; i < cavalos.length; i++) {
+                if (cavalos[i].tempoAcumulado < tempoCampeao) {
+                    tempoCampeao = cavalos[i].tempoAcumulado;
+                    campeao = cavalos[i];
                 }
             }
 
-            mensagem.innerText = `VENCEDOR: #${campeaoMatematico.numero} (Tempo Final: ${campeaoMatematico.tempoAcumulado.toFixed(1)}s)`;
-            mensagem.style.color = "#fff";
+        
+            var vice = null;
+            var tempoVice = 99999;
+
+            for (var i = 0; i < cavalos.length; i++) {
+              
+                if (cavalos[i].id !== campeao.id) {
+                    if (cavalos[i].tempoAcumulado < tempoVice) {
+                        tempoVice = cavalos[i].tempoAcumulado;
+                        vice = cavalos[i];
+                    }
+                }
+            }
+
+      
+            var terceiro = null;
+            var tempoTerceiro = 99999;
+
+            for (var i = 0; i < cavalos.length; i++) {
+    
+                if (cavalos[i].id !== campeao.id && (vice && cavalos[i].id !== vice.id)) {
+                    if (cavalos[i].tempoAcumulado < tempoTerceiro) {
+                        tempoTerceiro = cavalos[i].tempoAcumulado;
+                        terceiro = cavalos[i];
+                    }
+                }
+            }
+
+            sessionStorage.CAMPEAO = campeao.numero;
             
-            campeaoMatematico.elemento.style.zIndex = 9999;
-            campeaoMatematico.elemento.style.transform += " scale(1.2)";
+            if (vice) {
+                sessionStorage.SEGUNDO = vice.numero;
+            }
+            if (terceiro) {
+                sessionStorage.TERCEIRO = terceiro.numero;
+            }
+
             
-            conteudo_logs.innerHTML += "<div class='log-entry' style='color:#ffd700; font-weight:bold; border-top:1px solid #ffd700; margin-top:10px;'>FIM DA CORRIDA</div>";
+            var msg = mensagem;
+            msg.innerText = `VENCEDOR: #${campeao.numero} (Tempo: ${campeao.tempoAcumulado.toFixed(1)}s)`;
+            msg.style.color = "#fff";
+            
+            
+            campeao.elemento.style.zIndex = 9999;
+            campeao.elemento.style.transform += " scale(1.2)";
+           
+            var painel = conteudo_logs; 
+            painel.innerHTML += "<div class='log-entry' style='color:#ffd700; font-weight:bold; border-top:1px solid #ffd700; margin-top:10px;'>FIM DA CORRIDA</div>";
+          
+            painel.innerHTML += "<div class='log-entry'>1º Lugar: Cavalo " + campeao.numero + "</div>";
+            if(vice) painel.innerHTML += "<div class='log-entry'>2º Lugar: Cavalo " + vice.numero + "</div>";
+            if(terceiro) painel.innerHTML += "<div class='log-entry'>3º Lugar: Cavalo " + terceiro.numero + "</div>";
+
+            setTimeout(
+            window.location = './telaFinal.html'
+            , 2000)
         }
+        
 
         function prepararLargada() {
             if (corridaAndando) return;

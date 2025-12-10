@@ -10,8 +10,7 @@
     <link rel="shortcut icon" href="../Assets/Icons/favIcon.svg" type="image/x-icon">
 </head>
 
-<body onload="IniciarSong(5)">
-
+<body onload="IniciarSong(5); carregarRanking()">
 
     <header class="container_title">
         <img class="logo" src="../Assets/Icons/Logo.svg" alt="Logo">
@@ -27,45 +26,105 @@
 
         <section class="ranking_cards">
 
-            <div class="card">
+            <div class="card" id="card-1">
                 <div class="place place1">1º Lugar</div>
                 <div class="img_box">
-                    <img src="../Assets/Sprites/Wynonna-Bronze.png" alt="1º colocado">
+                    </div>
+                <h2 class="card_name">---</h2>
                 </div>
-                <h2 class="card_name">Nome do Cavalo</h2>
-                <h2 class="card_pontuação">Pontuação</h2>
 
-            </div>
-
-            <div class="card">
+            <div class="card" id="card-2">
                 <div class="place place2">2º Lugar</div>
                 <div class="img_box">
-                    <img src="../Assets/Sprites/pegasus.png" alt="2º colocado">
-                </div>
-                <h2 class="card_name">Nome do Cavalo</h2>
-                <h2 class="card_pontuação">Pontuação</h2>
-
+                    </div>
+                <h2 class="card_name">---</h2>
             </div>
 
-            <div class="card">
+            <div class="card" id="card-3">
                 <div class="place place3">3º Lugar</div>
                 <div class="img_box">
-                    <img src="../Assets/Sprites/Robot Bill-Ironhoof.png" alt="3º colocado">
-                </div>
-                <h2 class="card_name">Nome do Cavalo</h2>
-                <h2 class="card_pontuação">Pontuação</h2>
-
+                    </div>
+                <h2 class="card_name">---</h2>
             </div>
 
         </section>
 
-        <button id="Voltar" class="title_text" onclick="window.location = 'characters.html'" >Finalizar</button>
+        <button id="Voltar" class="title_text" onclick="window.location = 'characters.html'">Finalizar</button>
 
     </main>
 
+    <script src="../Scripts/soundTrack.js"></script>
+
+    <script>
+        var listaPersonagens = [
+            {
+                nome: 'Bloqueado',
+                imagem: '<img class="options" src="../Assets/Sprites/Bloqueado.png" alt="">',
+                status: 1
+            }, {
+                nome: 'Wynonna Earp',
+                imagem: '<img class="options" src="../Assets/Sprites/Wynonna-Bronze.png" alt="">',
+                status: 1
+            }, {
+                nome: 'Cavaleiro01',
+                imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro01.png" alt="">',
+                status: 1
+            }, {
+                nome: 'Cavaleiro02',
+                imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro02.png" alt="">',
+                status: 0
+            }, {
+                nome: 'Cavaleiro03',
+                imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro03.png" alt="">',
+                status: 0
+            }, {
+                nome: 'Cavaleiro04',
+                imagem: '<img class="options" src="../Assets/Sprites/Cavaleira04.png" alt="">',
+                status: 0
+            }, {
+                nome: 'Cavaleiro05',
+                imagem: '<img class="options" src="../Assets/Sprites/Cavaleira05.png" alt="">',
+                status: 0
+            }, {
+                nome: 'Cavaleiro6',
+                imagem: '<img class="options" src="../Assets/Sprites/Robot Bill-Ironhoof.png" alt="">',
+                status: 0
+            }
+        ];
+
+        function carregarRanking() {
+            // Recupera os IDs dos vencedores (que correspondem ao índice na listaPersonagens ou similar)
+            // No jogo, 'numero' era baseado em i+1? Se sim, Cavalo 1 é Index 1.
+            var id1 = parseInt(sessionStorage.CAMPEAO);
+            var id2 = parseInt(sessionStorage.SEGUNDO);
+            var id3 = parseInt(sessionStorage.TERCEIRO);
+
+            atualizarCard('card-1', id1);
+            atualizarCard('card-2', id2);
+            atualizarCard('card-3', id3);
+        }
+
+        function atualizarCard(cardId, personagemIndex) {
+            var card = document.getElementById(cardId);
+            
+         
+            if (!isNaN(personagemIndex) && listaPersonagens[personagemIndex]) {
+                var personagem = listaPersonagens[personagemIndex];
+
+              
+                var nomeEl = card.querySelector('.card_name');
+                if (nomeEl) nomeEl.innerText = personagem.nome;
+
+                var imgBox = card.querySelector('.img_box');
+                if (imgBox) imgBox.innerHTML = personagem.imagem;
+            } else {
+               
+                card.style.opacity = "0.5";
+                card.querySelector('.card_name').innerText = "Vazio";
+            }
+        }
+    </script>
 
 </body>
 
 </html>
-
-<script src="../Scripts/soundTrack.js"></script>
