@@ -152,7 +152,7 @@
     </div>
 
     <script>
-        var mapaIndex = parseInt(sessionStorage.MAPA_SELECTED) || 0; 
+        var mapaIndex = 1; 
         var QTD_CAVALOS = parseInt(sessionStorage.QUANTIDADE_COMPETIDORES) || 4; 
         
         var GAME_WIDTH = game_container.offsetWidth;
@@ -491,9 +491,21 @@
             if(vice) painel.innerHTML += "<div class='log-entry'>2º Lugar: Cavalo " + vice.numero + "</div>";
             if(terceiro) painel.innerHTML += "<div class='log-entry'>3º Lugar: Cavalo " + terceiro.numero + "</div>";
 
-            setTimeout(
-            window.location = './telaFinal.html'
-            , 2000)
+
+            if (campeao.numero == 1){
+
+                setTimeout(
+                window.location = './Vitoria.html' 
+                , 2000)
+
+            }else{
+
+                setTimeout(
+                window.location = './upgrade.html'
+                , 2000)
+
+            }
+            
         }
         
 

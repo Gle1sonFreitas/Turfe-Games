@@ -16,13 +16,17 @@ function IniciarSong (tela){
 
         trilhaSonoraCut()
 
-    }else if (4){
+    }else if (tela == 4){
 
         trilhaSonoraUpdate()
 
-    }else{
+    }else if (tela == 4){
 
         trilhaSonoraWin()
+
+    }else {
+
+        trilhaSonoraFase()
 
     }
     
@@ -101,6 +105,21 @@ function trilhaSonoraUpdate() {
 function trilhaSonoraWin(){
 
       var trilhaSonora = new Audio('../Assets/Audio/TrilhaSonora/trilhaFase02.mp3')
+
+    if (!trilhaAtivacao){
+
+        trilhaSonora.play();
+        trilhaAtivacao = true
+
+    }
+
+    trilhaSonora.loop = true;
+
+}
+
+function trilhaSonoraFase() {
+
+          var trilhaSonora = new Audio('../Assets/Audio/TrilhaSonora/trilhaFase.mp3')
 
     if (!trilhaAtivacao){
 

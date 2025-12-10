@@ -110,6 +110,7 @@ span {
     margin-right: 15px;
     height: 25px;
     width: 100px;
+    cursor: pointer;
 }
 
 .upgrade  #final{
@@ -122,3 +123,9 @@ span {
     width: 200px;
     font-size: 30px;
 }
+
+#pontos {
+
+    color: var(--Marrom-escuro);
+
+}   
