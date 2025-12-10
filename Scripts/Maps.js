@@ -50,8 +50,8 @@ function CarregarMapas() {
 var playersActive = 0
 
 function Come(player) {
-     var  mapaSelecionado = player - 1; 
-    alert("Mapa selecionado: " + listarmapas[mapaSelecionado].nome);
+     mapaSelecionado = player - 1; 
+    alert(`Mapa selecionado: ${listarmapas[mapaSelecionado].nome}`);
 
 }
 CarregarMapas();
