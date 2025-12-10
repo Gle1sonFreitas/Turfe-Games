@@ -3,7 +3,7 @@ body {
     background: url(../Assets/img/BackgroundCharacters.png);
     background-repeat: round;
     overflow: hidden;
-    
+
 }
 
 .container_title {
@@ -15,7 +15,7 @@ body {
 
 }
 
-.div_title{
+.div_title {
 
     display: flex;
     flex-direction: column;
@@ -25,7 +25,7 @@ body {
 
 }
 
-.title_text{
+.title_text {
 
     font-size: 4.5vw;
     height: 35%;
@@ -55,7 +55,7 @@ body {
     justify-content: center;
     height: 65%;
     width: 100%;
-    
+
 }
 
 .characters {
@@ -76,7 +76,7 @@ body {
     height: 50%;
     z-index: 1;
     pointer-events: none;
-    
+
 }
 
 .players {
@@ -93,13 +93,13 @@ body {
     justify-content: start;
 }
 
-.options{
+.options {
 
     width: 125%;
 
 }
 
-.btn_options{
+.btn_options {
 
     width: 1.25%;
     height: 4%;
@@ -115,7 +115,7 @@ body {
 
 }
 
-.img_options{
+.img_options {
 
     display: flex;
     align-items: center;
@@ -136,6 +136,11 @@ body {
 
 }
 
+.players:hover {
+    transform: translateY(5px);
+    z-index: 100;
+}
+
 .btn_selection {
 
     height: 7%;
@@ -149,14 +154,14 @@ body {
 
 }
 
-.btn_ride{
+.btn_ride {
 
 
     position: absolute;
     bottom: 10%;
     z-index: 100;
     cursor: pointer;
-   width: 8%;
+    width: 8%;
     height: 5%;
     background-color: rgb(210, 207, 194);
     box-shadow: 0px 0px 20px rgba(210, 207, 194, 1);
@@ -196,3 +201,88 @@ body {
 
 }
 
+.card-personagem {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.card-personagem:hover {
+    transform: scale(1.05);
+}
+
+.card-personagem.bloqueado {
+    opacity: 0.4;
+    filter: grayscale(100%);
+    pointer-events: none;
+    cursor: not-allowed;
+    border: 2px solid #555;
+}
+
+/* Modal Overlay (Fundo escuro) */
+.modal-overlay {
+    display: none;
+    /* Começa oculto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+/* Conteúdo do Modal */
+.modal-content {
+    background: #5a2d0c;
+    /* Marrom do tema */
+    border: 4px solid #c2b280;
+    /* Borda bege */
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    color: #f0e6d2;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    animation: popIn 0.3s ease-out;
+}
+
+.modal-content h2 {
+    color: #ff4444;
+    /* Vermelho alerta */
+    margin-top: 0;
+}
+
+.modal-content button {
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-size: 16px;
+    background: #c2b280;
+    border: 2px solid #333;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+}
+
+.modal-content button:hover {
+    background: #fff;
+}
+
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.modal-overlay.show {
+    display: flex;
+}
