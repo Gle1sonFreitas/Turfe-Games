@@ -32,6 +32,8 @@ var readyActive1 = false
 var readyActive2 = false
 var readyActive3 = false
 
+var mapaSelecionado = null; 
+
 
 function CarregarMapas() {
     player01.innerHTML = listarmapas[0].imagem;
@@ -48,17 +50,8 @@ function CarregarMapas() {
 var playersActive = 0
 
 function Come(player) {
-    if (player == 1) {
-        sessionStorage.MAPA_SELECTED = 0;
-    } else if (player == 2) {
-        sessionStorage.MAPA_SELECTED = 1;
-    } else if (player == 3) {
-        sessionStorage.MAPA_SELECTED = 2;
-    } else {
-        sessionStorage.MAPA_SELECTED = 3;
-    }
-
-        alert("Mapa selecionado: " + listarmapas[sessionStorage.MAPA_SELECTED].nome);
+     var  mapaSelecionado = player - 1; 
+    alert("Mapa selecionado: " + listarmapas[mapaSelecionado].nome);
 
 }
 CarregarMapas();
