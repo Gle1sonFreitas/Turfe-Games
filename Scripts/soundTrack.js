@@ -1,5 +1,5 @@
 var trilhaAtivacao = false
-
+var ANIMATION_DURATION = 800;
 function IniciarSong (tela){
     
     if (tela == 1){
@@ -112,3 +112,7 @@ function trilhaSonoraWin(){
     trilhaSonora.loop = true;
 
 }
+
+function handleNavigation(url) {
+                window.location.href = url;
+    }

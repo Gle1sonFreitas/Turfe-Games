@@ -12,7 +12,7 @@
 
 </head>
 <body onclick="IniciarSong(1)">
-    
+    <div id="pixel-transition"></div>
     <header class="container_title">
 
         <img class="logo" src="../Assets/Icons/Logo.svg" alt="">
@@ -31,8 +31,8 @@
         <ul class="menu">
             
 
-            <li onmouseover="EfeitoSonoroMenu()" onclick="window.location = './history.html'">New Game</li>
-            <li onmouseover="EfeitoSonoroMenu()" onclick="window.location = './characters.html'">Multiplayer</li>
+            <li onmouseover="EfeitoSonoroMenu()" onclick="handleNavigation('./history.html')">New Game</li>
+            <li onmouseover="EfeitoSonoroMenu()" onclick="handleNavigation('./characters.html')" >Multiplayer</li>
             <li onmouseover="EfeitoSonoroMenu()" >Credits</li>
 
         </ul>

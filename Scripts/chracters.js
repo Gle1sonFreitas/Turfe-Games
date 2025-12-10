@@ -1,52 +1,45 @@
 var listaPersonagens = [
-{
-    nome: 'Bloqueado',
-    imagem: '<img class="options" src="../Assets/Sprites/Bloqueado.png" alt="">',
-    status: 1
-
-},{
-
-    nome: 'Wynonna Earp',
-    imagem: '<img class="options" src="../Assets/Sprites/Wynonna-Bronze.png" alt="">',
-    status: 1
-
-},{
-
-    nome: 'Cavaleiro01',
-    imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro01.png" alt="">',
-    status: 1
-
-},{
-
-    nome: 'Cavaleiro02',
-    imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro02.png" alt="">',
-    status: 0 
-
-},{
-
-    nome: 'Cavaleiro03',
-    imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro03.png" alt="">',
-    status: 0 
-
-},{
-
-    nome: 'Cavaleiro04',
-    imagem: '<img class="options" src="../Assets/Sprites/Cavaleira04.png" alt="">',
-    status: 0 
-
-},{
-
-    nome: 'Cavaleiro05',
-    imagem: '<img class="options" src="../Assets/Sprites/Cavaleira05.png" alt="">',
-    status: 0 
-
-},{
-
-    nome: 'Cavaleiro6',
-    imagem: '<img class="options" src="../Assets/Sprites/Robot Bill-Ironhoof.png" alt="">',
-    status: 0 
-
-}]
+    {
+        nome: 'Bloqueado',
+        imagem: '<img class="options" src="../Assets/Sprites/Bloqueado.png" alt="">',
+        status: 1
+    },
+    {
+        nome: 'Wynonna Earp',
+        imagem: '<img class="options" src="../Assets/Sprites/Wynonna-Bronze.png" alt="">',
+        status: 1
+    },
+    {
+        nome: 'Cavaleiro01',
+        imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro01.png" alt="">',
+        status: 1
+    },
+    {
+        nome: 'Cavaleiro02',
+        imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro02.png" alt="">',
+        status: 0
+    },
+    {
+        nome: 'Cavaleiro03',
+        imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro03.png" alt="">',
+        status: 0
+    },
+    {
+        nome: 'Cavaleiro04',
+        imagem: '<img class="options" src="../Assets/Sprites/Cavaleira04.png" alt="">',
+        status: 0
+    },
+    {
+        nome: 'Cavaleiro05',
+        imagem: '<img class="options" src="../Assets/Sprites/Cavaleira05.png" alt="">',
+        status: 0
+    },
+    {
+        nome: 'Cavaleiro6',
+        imagem: '<img class="options" src="../Assets/Sprites/Robot Bill-Ironhoof.png" alt="">',
+        status: 0
+    }
+]
 
 var player01 = document.getElementById('imgPlayer1')
 var player02 = document.getElementById('imgPlayer2')
@@ -71,48 +64,48 @@ var readyActive4 = false
 var ride = document.getElementById('ride')
 
 
-function Characeters (){
-    
+function Characeters() {
+
     player01.innerHTML = listaPersonagens[0].imagem
     player02.innerHTML = listaPersonagens[0].imagem
     player03.innerHTML = listaPersonagens[0].imagem
     player04.innerHTML = listaPersonagens[0].imagem
     sessionStorage.clear()
-    
+
 }
 
 var playersActive = 0
 
-function Come(player){
+function Come(player) {
 
-    if(player == 1){
+    if (player == 1) {
 
-        btnPlayer1.innerHTML = "ready" 
-        btnPlayer1.onclick = () => {Ready(1)} 
+        btnPlayer1.innerHTML = "ready"
+        btnPlayer1.onclick = () => { Ready(1) }
         player01.innerHTML = listaPersonagens[1].imagem
         NomePlayer1.innerHTML = listaPersonagens[1].nome
         playersActive++
 
-    }else if (player == 2){
-        
-        btnPlayer2.innerHTML = "ready" 
-        btnPlayer2.onclick = () => {Ready(2)} 
+    } else if (player == 2) {
+
+        btnPlayer2.innerHTML = "ready"
+        btnPlayer2.onclick = () => { Ready(2) }
         player02.innerHTML = listaPersonagens[1].imagem
         NomePlayer2.innerHTML = listaPersonagens[1].nome
         playersActive++
 
-    }else if (player == 3){
-        
-        btnPlayer3.innerHTML = "ready" 
-        btnPlayer3.onclick = () => {Ready(3)} 
+    } else if (player == 3) {
+
+        btnPlayer3.innerHTML = "ready"
+        btnPlayer3.onclick = () => { Ready(3) }
         player03.innerHTML = listaPersonagens[1].imagem
         NomePlayer3.innerHTML = listaPersonagens[1].nome
         playersActive++
 
-    }else {
+    } else {
 
-        btnPlayer4.innerHTML = "ready" 
-        btnPlayer4.onclick = () => {Ready(4)} 
+        btnPlayer4.innerHTML = "ready"
+        btnPlayer4.onclick = () => { Ready(4) }
         player04.innerHTML = listaPersonagens[1].imagem
         NomePlayer4.innerHTML = listaPersonagens[1].nome
         playersActive++
@@ -126,13 +119,13 @@ var optionActive2 = 1
 var optionActive3 = 1
 var optionActive4 = 1
 
-function scrolling (player, PrevNext) {
+function scrolling(player, PrevNext) {
 
-    if (player == 1 && PrevNext == 1){
+    if (player == 1 && PrevNext == 1) {
 
-        optionActive1 --
+        optionActive1--
 
-        if(optionActive1 <= 0){
+        if (optionActive1 <= 0) {
 
             optionActive1 = listaPersonagens.length - 1
 
@@ -142,11 +135,11 @@ function scrolling (player, PrevNext) {
         NomePlayer1.innerHTML = listaPersonagens[optionActive1].nome
 
 
-    }else if (player == 1 && PrevNext == 2){
+    } else if (player == 1 && PrevNext == 2) {
 
-        optionActive1 ++
+        optionActive1++
 
-        if(optionActive1 >= listaPersonagens.length){
+        if (optionActive1 >= listaPersonagens.length) {
 
             optionActive1 = 1
 
@@ -155,11 +148,11 @@ function scrolling (player, PrevNext) {
         player01.innerHTML = listaPersonagens[optionActive1].imagem
         NomePlayer1.innerHTML = listaPersonagens[optionActive1].nome
 
-    }else if (player == 2 && PrevNext == 1){
+    } else if (player == 2 && PrevNext == 1) {
 
-        optionActive2 --
+        optionActive2--
 
-        if(optionActive2 <= 0){
+        if (optionActive2 <= 0) {
 
             optionActive2 = listaPersonagens.length - 1
 
@@ -168,11 +161,11 @@ function scrolling (player, PrevNext) {
         player02.innerHTML = listaPersonagens[optionActive2].imagem
         NomePlayer2.innerHTML = listaPersonagens[optionActive2].nome
 
-    }else if (player == 2 && PrevNext == 2){
+    } else if (player == 2 && PrevNext == 2) {
 
-        optionActive2 ++
+        optionActive2++
 
-        if(optionActive2 >= listaPersonagens.length){
+        if (optionActive2 >= listaPersonagens.length) {
 
             optionActive2 = 1
 
@@ -181,11 +174,11 @@ function scrolling (player, PrevNext) {
         player02.innerHTML = listaPersonagens[optionActive2].imagem
         NomePlayer2.innerHTML = listaPersonagens[optionActive2].nome
 
-    }else if (player == 3 && PrevNext == 1){
+    } else if (player == 3 && PrevNext == 1) {
 
-        optionActive3 --
+        optionActive3--
 
-        if(optionActive3 <= 0){
+        if (optionActive3 <= 0) {
 
             optionActive3 = listaPersonagens.length - 1
 
@@ -194,11 +187,11 @@ function scrolling (player, PrevNext) {
         player03.innerHTML = listaPersonagens[optionActive3].imagem
         NomePlayer3.innerHTML = listaPersonagens[optionActive3].nome
 
-    }else if (player == 3 && PrevNext == 2){
+    } else if (player == 3 && PrevNext == 2) {
 
-        optionActive3 ++
+        optionActive3++
 
-        if(optionActive3 >= listaPersonagens.length){
+        if (optionActive3 >= listaPersonagens.length) {
 
             optionActive3 = 1
 
@@ -207,11 +200,11 @@ function scrolling (player, PrevNext) {
         player03.innerHTML = listaPersonagens[optionActive3].imagem
         NomePlayer3.innerHTML = listaPersonagens[optionActive3].nome
 
-    }else if (player == 4 && PrevNext == 1){
+    } else if (player == 4 && PrevNext == 1) {
 
-        optionActive4 --
+        optionActive4--
 
-        if(optionActive4 <= 0){
+        if (optionActive4 <= 0) {
 
             optionActive4 = listaPersonagens.length - 1
 
@@ -220,11 +213,11 @@ function scrolling (player, PrevNext) {
         player04.innerHTML = listaPersonagens[optionActive4].imagem
         NomePlayer4.innerHTML = listaPersonagens[optionActive4].nome
 
-    }else if (player == 4 && PrevNext == 2){
+    } else if (player == 4 && PrevNext == 2) {
 
-        optionActive4 ++
+        optionActive4++
 
-        if(optionActive4 >= listaPersonagens.length){
+        if (optionActive4 >= listaPersonagens.length) {
 
             optionActive4 = 1
 
@@ -238,90 +231,87 @@ function scrolling (player, PrevNext) {
 }
 
 var countReady = 0
+// MUDANÇA: Lista apenas de ÍNDICES para facilitar comparação
+var indicesSelecionados = [];
 
-function Ready(player){
+function Ready(player) {
 
-    if (player == 1){
-        
-        if (readyActive1 == false){
-            btnPlayer1.classList.add('Active')
-            readyActive1 = true
-            sessionStorage.PLAYER1_SELECTED = optionActive1
-            countReady++
-        }else {
-            btnPlayer1.classList.remove('Active')
-            readyActive1 = false
-            sessionStorage.removeItem('PLAYER1_SELECTED')
-            countReady--
-        }
-
-    }else if (player == 2){
-        
-        if (readyActive2 == false){
-            btnPlayer2.classList.add('Active')
-            readyActive2 = true
-            sessionStorage.PLAYER2_SELECTED = optionActive2
-            countReady++
-
-        }else {
-            btnPlayer2.classList.remove('Active')
-            readyActive2 = false
-            sessionStorage.removeItem('PLAYER2_SELECTED')
-            countReady--
-
-        }
-
-    }else if (player == 3){
-        
-        if (readyActive3 == false){
-            btnPlayer3.classList.add('Active')
-            readyActive3 = true
-            sessionStorage.PLAYER3_SELECTED = optionActive3
-            countReady++
-
-        }else {
-            btnPlayer3.classList.remove('Active')
-            readyActive3 = false
-            sessionStorage.removeItem('PLAYER3_SELECTED')
-            countReady--
-
-        }
-
-    }else{
-        
-        if (readyActive4 == false){
-            btnPlayer4.classList.add('Active')
-            readyActive4 = true
-            sessionStorage.PLAYER4_SELECTED = optionActive4
-            countReady++
-
-        }else {
-            btnPlayer4.classList.remove('Active')
-            readyActive4 = false
-            sessionStorage.removeItem('PLAYER4_SELECTED')
-            countReady--
-
-        }
-        
-    }
-
-    if (playersActive == countReady && playersActive > 1){
-
-        ride.classList.add('Active')
-        ride.onclick = () => {Ride()}
-
-    }else {
-
-        ride.classList.remove('Active')
-        ride.onclick = () => {}
-
-    }
+    // Configuração para evitar repetição excessiva de código
+    var config = {};
     
+    if (player == 1) {
+        config = { active: readyActive1, option: optionActive1, btn: btnPlayer1, key: 'PLAYER1_SELECTED' };
+    } else if (player == 2) {
+        config = { active: readyActive2, option: optionActive2, btn: btnPlayer2, key: 'PLAYER2_SELECTED' };
+    } else if (player == 3) {
+        config = { active: readyActive3, option: optionActive3, btn: btnPlayer3, key: 'PLAYER3_SELECTED' };
+    } else {
+        config = { active: readyActive4, option: optionActive4, btn: btnPlayer4, key: 'PLAYER4_SELECTED' };
+    }
+
+    // TENTANDO SELECIONAR (READY)
+    if (config.active == false) {
+        
+        // Validação: Verifica se o índice já está na lista de selecionados
+        if (indicesSelecionados.includes(config.option)) {
+            mostrarErro();
+            return; // Para tudo aqui
+        }
+
+        // Se passou, marca como pronto
+        config.btn.classList.add('Active');
+        indicesSelecionados.push(config.option); // Salva o índice
+        sessionStorage.setItem(config.key, config.option);
+        countReady++;
+        
+        // Atualiza estado
+        if(player == 1) readyActive1 = true;
+        if(player == 2) readyActive2 = true;
+        if(player == 3) readyActive3 = true;
+        if(player == 4) readyActive4 = true;
+
+    } 
+    // TENTANDO DESMARCAR (UNREADY)
+    else {
+        config.btn.classList.remove('Active');
+        
+        // Remove da lista de bloqueados
+        var indexNoArray = indicesSelecionados.indexOf(config.option);
+        if (indexNoArray > -1) {
+            indicesSelecionados.splice(indexNoArray, 1);
+        }
+        
+        sessionStorage.removeItem(config.key);
+        countReady--;
+
+        // Atualiza estado
+        if(player == 1) readyActive1 = false;
+        if(player == 2) readyActive2 = false;
+        if(player == 3) readyActive3 = false;
+        if(player == 4) readyActive4 = false;
+    }
+
+    // Verifica botão de iniciar corrida
+    if (playersActive == countReady && playersActive > 1) {
+        ride.classList.add('Active');
+        ride.onclick = () => { Ride() };
+    } else {
+        ride.classList.remove('Active');
+        ride.onclick = () => {};
+    }
 }
 
-function Ride(){
+function Ride() {
 
-    sessionStorage.QUANTIDADE_COMPETIDORES = countReady    
+    sessionStorage.QUANTIDADE_COMPETIDORES = countReady
     window.location = 'maps.html'
 
+}
+
+function mostrarErro() {
+    document.getElementById('modal-erro').classList.add('show');
+}
+
+function fecharModal() {
+    document.getElementById('modal-erro').classList.remove('show');
 }
