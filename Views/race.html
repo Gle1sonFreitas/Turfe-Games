@@ -281,7 +281,7 @@
 
                 cavalo.updateVisuals();
 
-                if (cavalo.x >= GAME_WIDTH - 250) {
+                if (cavalo.x >= GAME_WIDTH - 500) {
                     cavalo.finalizou = true;
                     return true;
                 }
@@ -386,6 +386,7 @@
                 cavalos.push(novoCavalo);
             }
             updateFundo();
+            prepararLargada()
         }
 
         function updateFundo() {
