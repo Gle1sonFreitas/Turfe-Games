@@ -109,11 +109,13 @@ span {
     color: white;
     margin-right: 15px;
     height: 25px;
+    width: 100px;
 }
 
 .upgrade  #final{
     background-color: rgba(177, 59, 29, .8);
     border-radius: 10px;
+    border: 3px solid white;
     color: white;
     margin-right: 15px;
     height: 40px;
