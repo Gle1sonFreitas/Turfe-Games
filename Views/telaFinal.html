@@ -26,24 +26,24 @@
 
         <section class="ranking_cards">
 
-            <div class="card" id="card-1">
-                <div class="place place1">1º Lugar</div>
-                <div class="img_box">
-                    </div>
-                <h2 class="card_name">---</h2>
-                </div>
+
 
             <div class="card" id="card-2">
                 <div class="place place2">2º Lugar</div>
                 <div class="img_box">
-                    </div>
+                </div>
                 <h2 class="card_name">---</h2>
             </div>
-
+            <div class="card" id="card-1">
+                <div class="place place1">1º Lugar</div>
+                <div class="img_box">
+                </div>
+                <h2 class="card_name">---</h2>
+            </div>
             <div class="card" id="card-3">
                 <div class="place place3">3º Lugar</div>
                 <div class="img_box">
-                    </div>
+                </div>
                 <h2 class="card_name">---</h2>
             </div>
 
@@ -56,45 +56,51 @@
     <script src="../Scripts/soundTrack.js"></script>
 
     <script>
-        var listaPersonagens = [
+    
+      var listaPersonagens = [
             {
                 nome: 'Bloqueado',
                 imagem: '<img class="options" src="../Assets/Sprites/Bloqueado.png" alt="">',
                 status: 1
-            }, {
+            },
+            {
                 nome: 'Wynonna Earp',
                 imagem: '<img class="options" src="../Assets/Sprites/Wynonna-Bronze.png" alt="">',
                 status: 1
-            }, {
-                nome: 'Cavaleiro01',
+            },
+            {
+                nome: 'Vesper Vance',
                 imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro01.png" alt="">',
                 status: 1
-            }, {
-                nome: 'Cavaleiro02',
+            },
+            {
+                nome: 'Juno',
                 imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro02.png" alt="">',
                 status: 0
-            }, {
-                nome: 'Cavaleiro03',
+            },
+            {
+                nome: 'Sadie',
                 imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro03.png" alt="">',
                 status: 0
-            }, {
-                nome: 'Cavaleiro04',
+            },
+            {
+                nome: 'Rust',
                 imagem: '<img class="options" src="../Assets/Sprites/Cavaleira04.png" alt="">',
                 status: 0
-            }, {
-                nome: 'Cavaleiro05',
+            },
+            {
+                nome: 'Bolt',
                 imagem: '<img class="options" src="../Assets/Sprites/Cavaleira05.png" alt="">',
                 status: 0
-            }, {
-                nome: 'Cavaleiro6',
+            },
+            {
+                nome: 'Ironhoof',
                 imagem: '<img class="options" src="../Assets/Sprites/Robot Bill-Ironhoof.png" alt="">',
                 status: 0
             }
-        ];
+        ]
 
         function carregarRanking() {
-            // Recupera os IDs dos vencedores (que correspondem ao índice na listaPersonagens ou similar)
-            // No jogo, 'numero' era baseado em i+1? Se sim, Cavalo 1 é Index 1.
             var id1 = parseInt(sessionStorage.CAMPEAO);
             var id2 = parseInt(sessionStorage.SEGUNDO);
             var id3 = parseInt(sessionStorage.TERCEIRO);
@@ -106,19 +112,19 @@
 
         function atualizarCard(cardId, personagemIndex) {
             var card = document.getElementById(cardId);
-            
-         
+
+
             if (!isNaN(personagemIndex) && listaPersonagens[personagemIndex]) {
                 var personagem = listaPersonagens[personagemIndex];
 
-              
+
                 var nomeEl = card.querySelector('.card_name');
                 if (nomeEl) nomeEl.innerText = personagem.nome;
 
                 var imgBox = card.querySelector('.img_box');
                 if (imgBox) imgBox.innerHTML = personagem.imagem;
             } else {
-               
+
                 card.style.opacity = "0.5";
                 card.querySelector('.card_name').innerText = "Vazio";
             }

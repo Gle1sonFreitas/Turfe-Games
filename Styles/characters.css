@@ -234,12 +234,9 @@ body {
     backdrop-filter: blur(5px);
 }
 
-/* Conteúdo do Modal */
 .modal-content {
     background: #5a2d0c;
-    /* Marrom do tema */
     border: 4px solid #c2b280;
-    /* Borda bege */
     padding: 30px;
     border-radius: 8px;
     text-align: center;
@@ -250,7 +247,6 @@ body {
 
 .modal-content h2 {
     color: #ff4444;
-    /* Vermelho alerta */
     margin-top: 0;
 }
 
@@ -284,5 +280,5 @@ body {
 
 
 .modal-overlay.show {
-    display: flex;
+    display:flex;
 }

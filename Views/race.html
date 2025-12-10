@@ -188,23 +188,17 @@
         }
         renderBackground();
 
-        var framesCavalo = [
-            '../Assets/sprint-1.png', 
-            '../Assets/sprint-2.png', 
-            '../Assets/sprint-4.png'  
-        ];
-
         var cavalos = [];
         var corridaAndando = false;
         var loopId;
         var bgPos = 0;
         var velocidadeMundo = 5; 
         var intervaloVisualLog = null; 
-
-        function criarCavalo(id, numero, indiceVisual) {
+        
+        function criarCavalo(idPersonagem, numero, indiceVisual) {
             
             var cavalo = {
-                id: id,
+                id: idPersonagem,
                 numero: numero,
                 x: 50 + (Math.random() * 20), 
                 y: 0,
@@ -221,6 +215,32 @@
                 historicoVoltas: [] 
             };
 
+            var skinCavalo = 'fire';  
+
+            var idCheck = parseInt(idPersonagem);
+
+            if(idCheck == 1){
+                skinCavalo = 'fire';
+            }else if(idCheck == 2){
+                skinCavalo = 'tricolor';
+            }else if(idCheck == 3){
+                skinCavalo = 'board';
+            }else if(idCheck == 4){
+                skinCavalo = 'ultimo';
+            }else if(idCheck == 5){
+                skinCavalo = 'black';
+            }else if(idCheck == 6){
+                skinCavalo = 'white';
+            }else if(idCheck == 7){
+                skinCavalo = 'robot';
+            }
+
+            var framesCavalo = [
+                `../Assets/race/${skinCavalo}/sprint-1.png`, 
+                `../Assets/race/${skinCavalo}/sprint-2.png`, 
+                `../Assets/race/${skinCavalo}/sprint-3.png` 
+            ];
+            
             cavalo.elemento.classList.add('cavalo');
             cavalo.elemento.src = framesCavalo[0];
             cavalo.elemento.draggable = false;
@@ -382,11 +402,27 @@
             cavalos = [];
 
             for (var i = 0; i < QTD_CAVALOS; i++) {
-                var novoCavalo = criarCavalo(i, i + 1, i);
+                var playerSelected = 1;  
+                
+            
+                if(i == 0){
+                    playerSelected = sessionStorage.PLAYER1_SELECTED;
+                }else if(i == 1){
+                     playerSelected = sessionStorage.PLAYER2_SELECTED;
+                }else if( i == 2){
+                     playerSelected = sessionStorage.PLAYER3_SELECTED;
+                }else{
+                     playerSelected = sessionStorage.PLAYER4_SELECTED;
+                }
+                
+           
+                if(!playerSelected) playerSelected = 1; 
+
+                var novoCavalo = criarCavalo(playerSelected, i + 1, i);
                 cavalos.push(novoCavalo);
             }
             updateFundo();
-            prepararLargada()
+            prepararLargada();
         }
 
         function updateFundo() {
@@ -419,11 +455,10 @@
             }
         }
 
-           function finalizarCorrida(vencedorVisual) {
+        function finalizarCorrida(vencedorVisual) {
             corridaAndando = false;
             if(intervaloVisualLog) clearInterval(intervaloVisualLog); 
 
-         
             for (var i = 0; i < cavalos.length; i++) {
                 cavalos[i].pararAnimacao();
             }
@@ -438,27 +473,23 @@
                 }
             }
 
-        
             var vice = null;
             var tempoVice = 99999;
 
             for (var i = 0; i < cavalos.length; i++) {
-              
-                if (cavalos[i].id !== campeao.id) {
+                if (cavalos[i] !== campeao) {
                     if (cavalos[i].tempoAcumulado < tempoVice) {
                         tempoVice = cavalos[i].tempoAcumulado;
                         vice = cavalos[i];
                     }
                 }
             }
-
       
             var terceiro = null;
             var tempoTerceiro = 99999;
 
             for (var i = 0; i < cavalos.length; i++) {
-    
-                if (cavalos[i].id !== campeao.id && (vice && cavalos[i].id !== vice.id)) {
+                if (cavalos[i] !== campeao && (vice && cavalos[i] !== vice)) {
                     if (cavalos[i].tempoAcumulado < tempoTerceiro) {
                         tempoTerceiro = cavalos[i].tempoAcumulado;
                         terceiro = cavalos[i];
@@ -466,20 +497,19 @@
                 }
             }
 
-            sessionStorage.CAMPEAO = campeao.numero;
+         
+            sessionStorage.CAMPEAO = campeao.id;
             
             if (vice) {
-                sessionStorage.SEGUNDO = vice.numero;
+                sessionStorage.SEGUNDO = vice.id;
             }
             if (terceiro) {
-                sessionStorage.TERCEIRO = terceiro.numero;
+                sessionStorage.TERCEIRO = terceiro.id;
             }
-
             
             var msg = mensagem;
             msg.innerText = `VENCEDOR: #${campeao.numero} (Tempo: ${campeao.tempoAcumulado.toFixed(1)}s)`;
             msg.style.color = "#fff";
-            
             
             campeao.elemento.style.zIndex = 9999;
             campeao.elemento.style.transform += " scale(1.2)";
@@ -490,13 +520,11 @@
             painel.innerHTML += "<div class='log-entry'>1º Lugar: Cavalo " + campeao.numero + "</div>";
             if(vice) painel.innerHTML += "<div class='log-entry'>2º Lugar: Cavalo " + vice.numero + "</div>";
             if(terceiro) painel.innerHTML += "<div class='log-entry'>3º Lugar: Cavalo " + terceiro.numero + "</div>";
-
-            setTimeout(
-            window.location = './telaFinal.html'
-            , 2000)
+            setTimeout(() => {
+                window.location = './telaFinal.html';
+            }, 2000);
         }
         
-
         function prepararLargada() {
             if (corridaAndando) return;
 
@@ -571,7 +599,6 @@
         }
 
         setup();
-
     </script>
 </body>
 

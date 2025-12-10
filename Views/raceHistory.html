@@ -188,12 +188,7 @@
         }
         renderBackground();
 
-        var framesCavalo = [
-            '../Assets/sprint-1.png', 
-            '../Assets/sprint-2.png', 
-            '../Assets/sprint-4.png'  
-        ];
-
+       
         var cavalos = [];
         var corridaAndando = false;
         var loopId;
@@ -202,7 +197,18 @@
         var intervaloVisualLog = null; 
 
         function criarCavalo(id, numero, indiceVisual) {
-            
+            var skin = 'fire'
+            if(id == 0){
+                skin = 'fire'
+            }else{
+                skin = 'robot'
+            }
+             var framesCavalo = [
+            `../Assets/race/${skin}/sprint-1.png`, 
+            `../Assets/race/${skin}/sprint-2.png`, 
+            `../Assets/race/${skin}/sprint-3.png`  
+            ];
+
             var cavalo = {
                 id: id,
                 numero: numero,

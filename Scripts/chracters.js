@@ -10,32 +10,32 @@ var listaPersonagens = [
         status: 1
     },
     {
-        nome: 'Cavaleiro01',
+        nome: 'Vesper Vance',
         imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro01.png" alt="">',
         status: 1
     },
     {
-        nome: 'Cavaleiro02',
+        nome: 'Juno', 
         imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro02.png" alt="">',
         status: 0
     },
     {
-        nome: 'Cavaleiro03',
+        nome: 'Sadie', 
         imagem: '<img class="options" src="../Assets/Sprites/Cavaleiro03.png" alt="">',
         status: 0
     },
     {
-        nome: 'Cavaleiro04',
+        nome: 'Rust', 
         imagem: '<img class="options" src="../Assets/Sprites/Cavaleira04.png" alt="">',
         status: 0
     },
     {
-        nome: 'Cavaleiro05',
+        nome: 'Bolt', 
         imagem: '<img class="options" src="../Assets/Sprites/Cavaleira05.png" alt="">',
         status: 0
     },
     {
-        nome: 'Cavaleiro6',
+        nome: 'Ironhoof', 
         imagem: '<img class="options" src="../Assets/Sprites/Robot Bill-Ironhoof.png" alt="">',
         status: 0
     }
@@ -231,12 +231,10 @@ function scrolling(player, PrevNext) {
 }
 
 var countReady = 0
-// MUDANÇA: Lista apenas de ÍNDICES para facilitar comparação
 var indicesSelecionados = [];
 
 function Ready(player) {
 
-    // Configuração para evitar repetição excessiva de código
     var config = {};
     
     if (player == 1) {
@@ -249,33 +247,26 @@ function Ready(player) {
         config = { active: readyActive4, option: optionActive4, btn: btnPlayer4, key: 'PLAYER4_SELECTED' };
     }
 
-    // TENTANDO SELECIONAR (READY)
     if (config.active == false) {
-        
-        // Validação: Verifica se o índice já está na lista de selecionados
         if (indicesSelecionados.includes(config.option)) {
             mostrarErro();
-            return; // Para tudo aqui
+            return; 
         }
-
-        // Se passou, marca como pronto
         config.btn.classList.add('Active');
-        indicesSelecionados.push(config.option); // Salva o índice
+        indicesSelecionados.push(config.option);
         sessionStorage.setItem(config.key, config.option);
         countReady++;
         
-        // Atualiza estado
         if(player == 1) readyActive1 = true;
         if(player == 2) readyActive2 = true;
         if(player == 3) readyActive3 = true;
         if(player == 4) readyActive4 = true;
 
     } 
-    // TENTANDO DESMARCAR (UNREADY)
+   
     else {
         config.btn.classList.remove('Active');
         
-        // Remove da lista de bloqueados
         var indexNoArray = indicesSelecionados.indexOf(config.option);
         if (indexNoArray > -1) {
             indicesSelecionados.splice(indexNoArray, 1);
@@ -284,14 +275,12 @@ function Ready(player) {
         sessionStorage.removeItem(config.key);
         countReady--;
 
-        // Atualiza estado
         if(player == 1) readyActive1 = false;
         if(player == 2) readyActive2 = false;
         if(player == 3) readyActive3 = false;
         if(player == 4) readyActive4 = false;
     }
 
-    // Verifica botão de iniciar corrida
     if (playersActive == countReady && playersActive > 1) {
         ride.classList.add('Active');
         ride.onclick = () => { Ride() };

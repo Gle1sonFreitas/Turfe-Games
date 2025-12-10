@@ -56,7 +56,7 @@ function Come(player) {
         sessionStorage.MAPA_SELECTED = 2;
     }
 
-        alert("Mapa selecionado: " + listarmapas[sessionStorage.MAPA_SELECTED].nome);
+      Race()
 
 }
 

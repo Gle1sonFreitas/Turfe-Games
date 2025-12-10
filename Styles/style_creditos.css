@@ -65,7 +65,7 @@ h1{
     box-shadow:
         inset 0 0 0 3px #2b221d,
         0 6px 8px rgba(0,0,0,0.35);
-    background-image: url("../Assets/img/paper_texture.png"); /* opcional */
+    background-image: url("../Assets/img/paper_texture.png");
     background-size: cover;
     opacity: 80%;
 }
