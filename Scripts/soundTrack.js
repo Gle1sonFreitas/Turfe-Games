@@ -42,6 +42,25 @@ function EfeitoSonoroMenu () {
     
 }
 
+function EfeitoSonoroCharacter (button) {
+
+    if (button == 1) {
+
+        var efeitoSonoro = new Audio("../Assets/Audio/EfeitoSonoro/efeitoReady.mp3")
+        
+    }else{
+        
+        var efeitoSonoro = new Audio("../Assets/Audio/EfeitoSonoro/efeitoCharacter.mp3")
+
+    }
+
+    efeitoSonoro.currentTime = 0;
+    efeitoSonoro.play(); 
+
+    
+
+}
+
 function TrilhaSonoraMenu () {
         
     var trilhaSonora = new Audio('../Assets/Audio/TrilhaSonora/trilhaMenu.mp3')

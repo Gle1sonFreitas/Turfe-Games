@@ -1,47 +1,49 @@
-var Pontos = sessionStorage.PONTOS
+sessionStorage.QUANTIDADE_COMPETIDORES = 2
+sessionStorage.PROTAGONISTA = 1
 
-function ExibirPontos (){
+var PontosAcumulados = sessionStorage.PONTOS
+PontosAcumulados == undefined ? PontosAcumulados = 0 : PontosAcumulados
+var Pontos = 1 + Number(PontosAcumulados)
 
-   var CardPontos = document.getElementById('pontos')
+var CardPontos = document.getElementById('pontos')
+CardPontos.innerHTML = `Pontos: ${Pontos}`
 
-   if (Pontos == undefined){
+var historicoVelocidade = sessionStorage.VELOCIDADE
+var velocidadeTotal = Number(historicoVelocidade)
+isNaN(velocidadeTotal) ? velocidadeTotal = 0 : velocidadeTotal;
 
-    Pontos = 20
-
-   }
-
-   CardPontos.innerHTML = `Pontos: ${Pontos}`
-
-   sessionStorage.QUANTIDADE_COMPETIDORES = 2
-   sessionStorage.PROTAGONISTA = 1
-
+for (let i = 1; i <= velocidadeTotal; i++) {
+    
+    document.getElementById(`Ponto${i}`).classList.add('Ativo')
+    
 }
 
-var velocidadeTotal = 0
-var resistenciaTotal = 0
-
-function Upgrade (local){
+function Upgrade (){
 
     var velocidade = 0
-    var resistencia = 0
 
     if (Pontos <= 0){
 
         alert('Pontos Insuficientes')
 
-    }else if (local == 1){
+    }else if (velocidadeTotal < 5){
 
+        console.log(velocidadeTotal)
         velocidade++
         Pontos--
         velocidadeTotal += velocidade
-        document.getElementById('Speed').value = Number(velocidadeTotal)
+        console.log(velocidadeTotal)
+        sessionStorage.VELOCIDADE = velocidadeTotal
 
-    }else if (local == 2){
+        for (let i = 1; i <= velocidadeTotal; i++) {
+    
+            document.getElementById(`Ponto${i}`).classList.add('Ativo')
+    
+        }
 
-        resistencia++
-        Pontos--
-        resistenciaTotal += resistencia
-        document.getElementById('resistence').value = Number(resistenciaTotal)
+    }else {
+
+        alert('Velocidade maxima alcançada')
 
     }
 
@@ -49,3 +51,9 @@ function Upgrade (local){
 
 }
 
+function Run (){
+
+    sessionStorage.PONTOS = Pontos
+    window.location = 'racehistory.html'
+
+}

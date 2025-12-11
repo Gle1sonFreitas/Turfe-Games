@@ -13,14 +13,13 @@
 </head>
 <body onload="IniciarSong(2)">
 
-    <span class="title_text">Você Venceu !!!</span>
+    <div id="temp" class="Metricas title_text temp">Tempo Total:</div>
+    <div id="vel" class="Metricas title_text vel">Velocidade:</div>
+    <button onclick="window.location = 'index.html'" class="title_text btn menu">Menu</button>
+    <button onclick="sessionStorage.clear(), window.location = 'history.html'" class="title_text btn again">Try Again</button>
 
-    <button onclick="window.location = 'index.html'" class="btnFim title_text">
-        Menu
-    </button>
-
-    
 </body>
 </html>
 
 <script src="../Scripts/soundTrack.js"></script>
+<script src="../Scripts/vitoria.js"></script>

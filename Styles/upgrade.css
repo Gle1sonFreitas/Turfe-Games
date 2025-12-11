@@ -70,10 +70,26 @@ body {
     height: 80%;
 }
 
+.progresso{
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3%;
+    align-items: center;
+
+}
+
 .progresso label {
     font-size: 30px;
-    font-family: "Crimson Text", serif;
-    color: rgba(78, 26, 11, 1);
+    color: white;
+}
+
+.title_text {
+
+    height: 100%;
+
 }
 
 /* progress {
@@ -126,6 +142,29 @@ span {
 
 #pontos {
 
-    color: var(--Marrom-escuro);
+    color: white;
+    font-size: xx-large;
+    height: 10%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid white;
+    background-color: var(--bg-button);
 
 }   
+
+.Pontos{
+
+    border: 3px solid var(--Marrom-escuro);
+    width: 10%;
+    height: 50%;
+
+}
+
+.Ativo {
+
+    background-color: rgba(177, 59, 29, 1);
+    box-shadow: 0px 0px 20px rgba(177, 59, 29, 1);
+
+}

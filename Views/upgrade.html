@@ -13,7 +13,7 @@
 
 </head>
 
-<body onload="IniciarSong(4), ExibirPontos()">
+<body onload="IniciarSong(4)">
     <div class="header_principal">
         <div class="container_title">
             <img class="logo" src="../Assets/Icons/Logo.svg">
@@ -32,24 +32,21 @@
 
         <div class="upgrade">
             <div class="progresso">
-                <label for="speed">Speed:</label>
-                <progress id="Speed" value="0" max="100"> 20% </progress><br>
-
-                <label for="resistence">Resistance:</label>
-                <progress id="resistence" value="0" max="100"> 20% </progress>
+                <label class="title_text" for="speed">Speed:</label>
+                <div id="Ponto1" class="Pontos"></div>
+                <div id="Ponto2" class="Pontos"></div>
+                <div id="Ponto3" class="Pontos"></div>
+                <div id="Ponto4" class="Pontos"></div>
+                <div id="Ponto5" class="Pontos"></div>
             </div>
-             <span id="pontos" class="body_text">Pontos:</span>
+             <span id="pontos" class="title_text">Pontos:</span>
             <div class="pai-box">
                 <div class="box">
                     <span>Speed</span>
-                    <button onclick="Upgrade(1)">Upgrade</button>
-                </div>
-                <div class="box">
-                    <span>Resistance</span>
-                    <button onclick="Upgrade(2)">Upgrade</button>
+                    <button onclick="Upgrade()">Upgrade</button>
                 </div>
             </div>
-            <button onclick="window.location = 'racehistory.html'" id="final">Next</button>
+            <button onclick="Run()" id="final">Next</button>
         </div>
     </div> 
 </body>

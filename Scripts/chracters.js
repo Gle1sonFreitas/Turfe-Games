@@ -81,7 +81,7 @@ function Come(player) {
     if (player == 1) {
 
         btnPlayer1.innerHTML = "ready"
-        btnPlayer1.onclick = () => { Ready(1) }
+        btnPlayer1.onclick = () => { EfeitoSonoroCharacter(1), Ready(1) }
         player01.innerHTML = listaPersonagens[1].imagem
         NomePlayer1.innerHTML = listaPersonagens[1].nome
         playersActive++
@@ -89,7 +89,7 @@ function Come(player) {
     } else if (player == 2) {
 
         btnPlayer2.innerHTML = "ready"
-        btnPlayer2.onclick = () => { Ready(2) }
+        btnPlayer2.onclick = () => { EfeitoSonoroCharacter(1), Ready(2) }
         player02.innerHTML = listaPersonagens[1].imagem
         NomePlayer2.innerHTML = listaPersonagens[1].nome
         playersActive++
@@ -97,7 +97,7 @@ function Come(player) {
     } else if (player == 3) {
 
         btnPlayer3.innerHTML = "ready"
-        btnPlayer3.onclick = () => { Ready(3) }
+        btnPlayer3.onclick = () => { EfeitoSonoroCharacter(1), Ready(3) }
         player03.innerHTML = listaPersonagens[1].imagem
         NomePlayer3.innerHTML = listaPersonagens[1].nome
         playersActive++
@@ -105,7 +105,7 @@ function Come(player) {
     } else {
 
         btnPlayer4.innerHTML = "ready"
-        btnPlayer4.onclick = () => { Ready(4) }
+        btnPlayer4.onclick = () => { EfeitoSonoroCharacter(1), Ready(4) }
         player04.innerHTML = listaPersonagens[1].imagem
         NomePlayer4.innerHTML = listaPersonagens[1].nome
         playersActive++
